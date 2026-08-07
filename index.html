@@ -1,4 +1,4 @@
-```html
+
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -22,7 +22,7 @@
     --card: var(--tg-theme-secondary-bg-color, #fff);
     --text: var(--tg-theme-text-color, #111);
     --hint: var(--tg-theme-hint-color, #777);
-    --line: rgba(128,128,128,.16);
+    --line: rgba(128,128,128,.15);
     --danger: #e05252;
 }
 
@@ -43,37 +43,41 @@ button {
     cursor: pointer;
 }
 
+.hidden {
+    display: none !important;
+}
+
 .app {
     max-width: 540px;
     margin: auto;
     padding: 16px 14px 95px;
 }
 
-/* HEADER */
+/* =========================
+   HEADER
+========================= */
 
 .header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 17px;
+    margin-bottom: 18px;
 }
 
 .logo-title {
-    font-size: 24px;
+    font-size: 25px;
     font-weight: 800;
 }
 
 .logo-sub {
-    margin-top: 2px;
-    font-size: 13px;
+    margin-top: 3px;
     color: var(--hint);
+    font-size: 13px;
 }
 
 .profile-button {
     width: 42px;
     height: 42px;
-    margin: 0;
-    padding: 0;
     border: 0;
     border-radius: 50%;
     background: var(--card);
@@ -81,7 +85,21 @@ button {
     font-size: 19px;
 }
 
-/* CALORIES */
+/* =========================
+   TABS
+========================= */
+
+.tab {
+    display: none;
+}
+
+.tab.active {
+    display: block;
+}
+
+/* =========================
+   CALORIE CARD
+========================= */
 
 .calorie-card {
     background: var(--card);
@@ -135,13 +153,15 @@ button {
     color: var(--hint);
 }
 
-/* MACROS */
+/* =========================
+   MACROS
+========================= */
 
 .macros-card {
     background: var(--card);
     border-radius: 20px;
     padding: 15px 8px;
-    margin-bottom: 15px;
+    margin-bottom: 16px;
 }
 
 .macros-grid {
@@ -150,8 +170,8 @@ button {
 }
 
 .macro-item {
-    text-align: center;
     position: relative;
+    text-align: center;
 }
 
 .macro-item + .macro-item::before {
@@ -165,23 +185,25 @@ button {
 }
 
 .macro-name {
-    font-size: 12px;
     color: var(--hint);
+    font-size: 12px;
 }
 
 .macro-value {
-    font-size: 19px;
-    font-weight: 750;
     margin-top: 3px;
+    font-size: 18px;
+    font-weight: 750;
 }
 
 .macro-target {
-    font-size: 11px;
+    margin-top: 3px;
     color: var(--hint);
-    margin-top: 2px;
+    font-size: 11px;
 }
 
-/* SECTION */
+/* =========================
+   SECTION
+========================= */
 
 .section-title {
     display: flex;
@@ -196,11 +218,13 @@ button {
 }
 
 .section-title span {
-    font-size: 13px;
     color: var(--hint);
+    font-size: 13px;
 }
 
-/* MEALS */
+/* =========================
+   MEALS
+========================= */
 
 .meals {
     display: flex;
@@ -216,8 +240,8 @@ button {
 
 .meal-header {
     display: flex;
-    align-items: center;
     justify-content: space-between;
+    align-items: center;
 }
 
 .meal-left {
@@ -243,9 +267,9 @@ button {
 }
 
 .meal-cal {
-    font-size: 13px;
-    color: var(--hint);
     margin-top: 2px;
+    color: var(--hint);
+    font-size: 13px;
 }
 
 .meal-items {
@@ -255,7 +279,7 @@ button {
 }
 
 .meal-food {
-    padding: 7px 0;
+    padding: 8px 0;
     border-bottom: 1px solid var(--line);
 }
 
@@ -276,128 +300,39 @@ button {
 }
 
 .meal-food-cal {
-    font-size: 12px;
     color: var(--hint);
+    font-size: 12px;
     white-space: nowrap;
 }
 
 .meal-food-info {
     margin-top: 3px;
-    font-size: 11px;
     color: var(--hint);
+    font-size: 11px;
 }
 
 .delete-food {
     width: auto;
-    margin: 5px 0 0;
-    padding: 5px 8px;
     border: 0;
     border-radius: 8px;
+    padding: 5px 8px;
+    margin-top: 5px;
     background: transparent;
     color: var(--danger);
     font-size: 12px;
 }
 
 .empty-meal {
-    font-size: 13px;
+    padding: 3px 0;
     color: var(--hint);
-    padding-top: 2px;
-}
-
-/* ADD BUTTON */
-
-.add-food-button {
-    position: fixed;
-    left: 50%;
-    transform: translateX(-50%);
-    bottom: 15px;
-    width: calc(100% - 28px);
-    max-width: 512px;
-    border: 0;
-    border-radius: 16px;
-    padding: 15px;
-    background: var(--blue);
-    color: var(--blue-text);
-    font-size: 16px;
-    font-weight: 750;
-    box-shadow: 0 6px 20px rgba(0,0,0,.18);
-    z-index: 20;
-}
-
-.add-food-button:active {
-    transform: translateX(-50%) scale(.98);
-}
-
-/* MODAL */
-
-.modal {
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,.45);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 12px;
-    z-index: 100;
-}
-
-.modal-box {
-    width: 100%;
-    max-width: 500px;
-    max-height: 92vh;
-    overflow-y: auto;
-    background: var(--bg);
-    border-radius: 22px;
-    padding: 18px;
-    box-shadow: 0 12px 45px rgba(0,0,0,.25);
-}
-
-.modal-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 10px;
-}
-
-.modal-header h2 {
-    margin: 0;
-    font-size: 20px;
-}
-
-.close-button {
-    width: 36px;
-    height: 36px;
-    padding: 0;
-    margin: 0;
-    border: 0;
-    border-radius: 50%;
-    background: var(--card);
-    color: var(--text);
-    font-size: 17px;
-}
-
-/* FORM */
-
-label {
-    display: block;
     font-size: 13px;
-    color: var(--hint);
-    margin: 12px 0 6px;
 }
 
-input,
-select {
-    width: 100%;
-    border: 0;
-    outline: none;
-    border-radius: 12px;
-    padding: 13px;
-    font-size: 16px;
-    background: var(--card);
-    color: var(--text);
-}
+/* =========================
+   BUTTON
+========================= */
 
-button.main-button {
+.main-button {
     width: 100%;
     border: 0;
     border-radius: 13px;
@@ -421,13 +356,131 @@ button.main-button {
     font-weight: 650;
 }
 
-/* CATEGORIES */
+/* =========================
+   ADD BUTTON
+========================= */
+
+.add-food-button {
+    position: fixed;
+    left: 50%;
+    bottom: 76px;
+    transform: translateX(-50%);
+    width: calc(100% - 28px);
+    max-width: 512px;
+    z-index: 20;
+
+    border: 0;
+    border-radius: 16px;
+    padding: 15px;
+
+    background: var(--blue);
+    color: var(--blue-text);
+
+    font-size: 16px;
+    font-weight: 750;
+
+    box-shadow: 0 6px 20px rgba(0,0,0,.18);
+}
+
+/* =========================
+   BOTTOM NAV
+========================= */
+
+.bottom-nav {
+    position: fixed;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+
+    width: 100%;
+    max-width: 540px;
+
+    height: 67px;
+
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+
+    background: var(--card);
+    border-top: 1px solid var(--line);
+
+    z-index: 30;
+}
+
+.nav-button {
+    border: 0;
+    background: transparent;
+    color: var(--hint);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    gap: 3px;
+
+    font-size: 11px;
+}
+
+.nav-icon {
+    font-size: 20px;
+    line-height: 1;
+}
+
+.nav-button.active {
+    color: var(--blue);
+    font-weight: 700;
+}
+
+/* =========================
+   PAGE CARD
+========================= */
+
+.page-card {
+    background: var(--card);
+    border-radius: 18px;
+    padding: 16px;
+    margin-bottom: 10px;
+}
+
+.page-card h2 {
+    margin: 0 0 13px;
+    font-size: 19px;
+}
+
+.page-card h3 {
+    margin: 0;
+    font-size: 15px;
+}
+
+/* =========================
+   PRODUCT SEARCH
+========================= */
+
+.search-box {
+    margin-bottom: 11px;
+}
+
+input,
+select {
+    width: 100%;
+    border: 0;
+    outline: none;
+    border-radius: 12px;
+    padding: 13px;
+    background: var(--card);
+    color: var(--text);
+    font-size: 16px;
+}
+
+.search-input {
+    background: var(--bg);
+}
 
 .categories {
     display: flex;
     gap: 7px;
     overflow-x: auto;
-    padding: 2px 0 4px;
+    padding: 2px 0 5px;
     scrollbar-width: none;
 }
 
@@ -439,10 +492,10 @@ button.main-button {
     width: auto;
     margin: 0;
     padding: 9px 12px;
-    white-space: nowrap;
     border: 0;
     border-radius: 11px;
-    background: var(--card);
+    white-space: nowrap;
+    background: var(--bg);
     color: var(--text);
     font-size: 13px;
 }
@@ -452,42 +505,182 @@ button.main-button {
     color: var(--blue-text);
 }
 
-/* PRODUCTS */
-
-.product-list {
-    margin-top: 12px;
-}
+/* =========================
+   PRODUCTS
+========================= */
 
 .product-option {
-    padding: 12px;
+    padding: 13px;
+    margin-bottom: 8px;
     border-radius: 13px;
-    background: var(--card);
-    margin-bottom: 7px;
-    cursor: pointer;
+    background: var(--bg);
 }
 
-.product-option.selected {
-    outline: 2px solid var(--blue);
+.product-option-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
 }
 
-.product-option b {
-    display: block;
+.product-option-name {
     font-size: 14px;
+    font-weight: 700;
 }
 
-.product-option span {
-    display: block;
-    margin-top: 3px;
-    font-size: 12px;
+.product-option-info {
+    margin-top: 4px;
     color: var(--hint);
+    font-size: 12px;
 }
 
-/* GRAMS */
+.product-add {
+    width: auto;
+    min-width: 36px;
+    height: 36px;
+    margin: 0;
+    padding: 0 10px;
+    border: 0;
+    border-radius: 10px;
+    background: var(--blue);
+    color: var(--blue-text);
+    font-size: 18px;
+}
+
+/* =========================
+   DIARY DAY
+========================= */
+
+.day-summary {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+}
+
+.day-stat {
+    padding: 13px;
+    border-radius: 13px;
+    background: var(--bg);
+}
+
+.day-stat-label {
+    color: var(--hint);
+    font-size: 12px;
+}
+
+.day-stat-value {
+    margin-top: 4px;
+    font-size: 18px;
+    font-weight: 750;
+}
+
+/* =========================
+   PROFILE
+========================= */
+
+.profile-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 12px 0;
+    border-bottom: 1px solid var(--line);
+}
+
+.profile-row:last-child {
+    border-bottom: 0;
+}
+
+.profile-label {
+    color: var(--hint);
+    font-size: 13px;
+}
+
+.profile-value {
+    font-size: 14px;
+    font-weight: 650;
+}
+
+/* =========================
+   MODAL
+========================= */
+
+.modal {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 12px;
+
+    background: rgba(0,0,0,.45);
+}
+
+.modal-box {
+    width: 100%;
+    max-width: 500px;
+    max-height: 92vh;
+    overflow-y: auto;
+
+    padding: 18px;
+
+    background: var(--bg);
+    border-radius: 22px;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-header h2 {
+    margin: 0;
+    font-size: 20px;
+}
+
+.close-button {
+    width: 36px;
+    height: 36px;
+    padding: 0;
+    margin: 0;
+    border: 0;
+    border-radius: 50%;
+    background: var(--card);
+    color: var(--text);
+    font-size: 17px;
+}
+
+label {
+    display: block;
+    margin: 12px 0 6px;
+    color: var(--hint);
+    font-size: 13px;
+}
+
+.hint {
+    color: var(--hint);
+    font-size: 13px;
+}
+
+.error {
+    margin-top: 9px;
+    color: var(--danger);
+    font-size: 13px;
+}
+
+/* =========================
+   GRAMS
+========================= */
 
 .grams-buttons {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 7px;
+    margin-bottom: 8px;
 }
 
 .grams-buttons button {
@@ -501,15 +694,17 @@ button.main-button {
 }
 
 .preview {
-    margin-top: 10px;
     padding: 12px;
+    margin-top: 10px;
     border-radius: 12px;
     background: var(--card);
     text-align: center;
     font-size: 13px;
 }
 
-/* NEW PRODUCT */
+/* =========================
+   NEW PRODUCT
+========================= */
 
 .macro-inputs {
     display: grid;
@@ -517,26 +712,9 @@ button.main-button {
     gap: 0 10px;
 }
 
-/* ERROR */
-
-.error {
-    color: var(--danger);
-    font-size: 13px;
-    margin-top: 9px;
-}
-
-/* HINT */
-
-.hint {
-    color: var(--hint);
-    font-size: 13px;
-}
-
-/* HIDDEN */
-
-.hidden {
-    display: none !important;
-}
+/* =========================
+   MOBILE
+========================= */
 
 @media (max-width: 360px) {
 
@@ -578,7 +756,7 @@ button.main-button {
 
         <button
             class="profile-button"
-            id="profileButton"
+            id="headerProfileButton"
             type="button"
         >
             👤
@@ -587,147 +765,429 @@ button.main-button {
     </header>
 
 
-    <!-- CALORIES -->
-
-    <section class="calorie-card">
-
-        <div class="calorie-title">
-            Осталось сегодня
-        </div>
-
-        <div class="calorie-number" id="leftCal">
-            0
-        </div>
-
-        <div class="calorie-unit">
-            ккал
-        </div>
-
-        <div class="progress">
-            <div
-                class="progress-bar"
-                id="calBar"
-            ></div>
-        </div>
-
-        <div class="calorie-bottom">
-
-            <span>
-                Съедено:
-                <b id="eatenCal">0</b>
-            </span>
-
-            <span>
-                Цель:
-                <b id="targetCal">0</b>
-            </span>
-
-        </div>
-
-    </section>
-
-
-    <!-- MACROS -->
-
-    <section class="macros-card">
-
-        <div class="macros-grid">
-
-            <div class="macro-item">
-
-                <div class="macro-name">
-                    Белки
-                </div>
-
-                <div class="macro-value">
-                    <span id="eatenP">0</span> /
-                    <span id="targetP">0</span> г
-                </div>
-
-                <div class="macro-target">
-                    Осталось:
-                    <span id="leftP">0</span> г
-                </div>
-
-            </div>
-
-
-            <div class="macro-item">
-
-                <div class="macro-name">
-                    Жиры
-                </div>
-
-                <div class="macro-value">
-                    <span id="eatenF">0</span> /
-                    <span id="targetF">0</span> г
-                </div>
-
-                <div class="macro-target">
-                    Осталось:
-                    <span id="leftF">0</span> г
-                </div>
-
-            </div>
-
-
-            <div class="macro-item">
-
-                <div class="macro-name">
-                    Углеводы
-                </div>
-
-                <div class="macro-value">
-                    <span id="eatenC">0</span> /
-                    <span id="targetC">0</span> г
-                </div>
-
-                <div class="macro-target">
-                    Осталось:
-                    <span id="leftC">0</span> г
-                </div>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- MEALS -->
-
-    <div class="section-title">
-
-        <h2>
-            Сегодня 🍽
-        </h2>
-
-        <span id="goalText">
-            Поддержание
-        </span>
-
-    </div>
+    <!-- =================================
+         HOME
+    ================================= -->
 
     <section
-        class="meals"
-        id="meals"
-    ></section>
+        class="tab active"
+        id="tabHome"
+    >
+
+        <section class="calorie-card">
+
+            <div class="calorie-title">
+                Осталось сегодня
+            </div>
+
+            <div
+                class="calorie-number"
+                id="leftCal"
+            >
+                0
+            </div>
+
+            <div class="calorie-unit">
+                ккал
+            </div>
+
+            <div class="progress">
+                <div
+                    class="progress-bar"
+                    id="calBar"
+                ></div>
+            </div>
+
+            <div class="calorie-bottom">
+
+                <span>
+                    Съедено:
+                    <b id="eatenCal">0</b>
+                </span>
+
+                <span>
+                    Цель:
+                    <b id="targetCal">0</b>
+                </span>
+
+            </div>
+
+        </section>
+
+
+        <section class="macros-card">
+
+            <div class="macros-grid">
+
+                <div class="macro-item">
+
+                    <div class="macro-name">
+                        Белки
+                    </div>
+
+                    <div class="macro-value">
+                        <span id="eatenP">0</span> /
+                        <span id="targetP">0</span> г
+                    </div>
+
+                    <div class="macro-target">
+                        Осталось:
+                        <span id="leftP">0</span> г
+                    </div>
+
+                </div>
+
+
+                <div class="macro-item">
+
+                    <div class="macro-name">
+                        Жиры
+                    </div>
+
+                    <div class="macro-value">
+                        <span id="eatenF">0</span> /
+                        <span id="targetF">0</span> г
+                    </div>
+
+                    <div class="macro-target">
+                        Осталось:
+                        <span id="leftF">0</span> г
+                    </div>
+
+                </div>
+
+
+                <div class="macro-item">
+
+                    <div class="macro-name">
+                        Углеводы
+                    </div>
+
+                    <div class="macro-value">
+                        <span id="eatenC">0</span> /
+                        <span id="targetC">0</span> г
+                    </div>
+
+                    <div class="macro-target">
+                        Осталось:
+                        <span id="leftC">0</span> г
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <div class="section-title">
+
+            <h2>
+                Сегодня 🍽
+            </h2>
+
+            <span id="homeGoal">
+                Поддержание
+            </span>
+
+        </div>
+
+
+        <section
+            class="meals"
+            id="homeMeals"
+        ></section>
+
+    </section>
+
+
+    <!-- =================================
+         DIARY
+    ================================= -->
+
+    <section
+        class="tab"
+        id="tabDiary"
+    >
+
+        <div class="section-title">
+
+            <h2>
+                Дневник 📖
+            </h2>
+
+            <span id="diaryDate">
+                Сегодня
+            </span>
+
+        </div>
+
+
+        <div class="page-card">
+
+            <div class="day-summary">
+
+                <div class="day-stat">
+
+                    <div class="day-stat-label">
+                        Калории
+                    </div>
+
+                    <div class="day-stat-value">
+                        <span id="diaryCal">0</span> ккал
+                    </div>
+
+                </div>
+
+
+                <div class="day-stat">
+
+                    <div class="day-stat-label">
+                        Белки
+                    </div>
+
+                    <div class="day-stat-value">
+                        <span id="diaryP">0</span> г
+                    </div>
+
+                </div>
+
+
+                <div class="day-stat">
+
+                    <div class="day-stat-label">
+                        Жиры
+                    </div>
+
+                    <div class="day-stat-value">
+                        <span id="diaryF">0</span> г
+                    </div>
+
+                </div>
+
+
+                <div class="day-stat">
+
+                    <div class="day-stat-label">
+                        Углеводы
+                    </div>
+
+                    <div class="day-stat-value">
+                        <span id="diaryC">0</span> г
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <section
+            class="meals"
+            id="diaryMeals"
+        ></section>
+
+    </section>
+
+
+    <!-- =================================
+         PRODUCTS
+    ================================= -->
+
+    <section
+        class="tab"
+        id="tabProducts"
+    >
+
+        <div class="section-title">
+
+            <h2>
+                Продукты 🥗
+            </h2>
+
+            <span id="productCount">
+                0
+            </span>
+
+        </div>
+
+
+        <div class="page-card">
+
+            <div class="search-box">
+
+                <input
+                    id="productSearch"
+                    class="search-input"
+                    type="search"
+                    placeholder="🔍 Найти продукт"
+                >
+
+            </div>
+
+
+            <div
+                class="categories"
+                id="productCategories"
+            ></div>
+
+        </div>
+
+
+        <div
+            id="productsList"
+        ></div>
+
+
+        <div class="page-card">
+
+            <button
+                class="main-button"
+                id="openNewProduct"
+                type="button"
+            >
+                ＋ Создать свой продукт
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- =================================
+         PROFILE
+    ================================= -->
+
+    <section
+        class="tab"
+        id="tabProfile"
+    >
+
+        <div class="section-title">
+
+            <h2>
+                Профиль 👤
+            </h2>
+
+        </div>
+
+
+        <div
+            class="page-card"
+            id="profileInfo"
+        ></div>
+
+
+        <div class="page-card">
+
+            <button
+                class="main-button"
+                id="editProfile"
+                type="button"
+            >
+                Изменить профиль
+            </button>
+
+        </div>
+
+    </section>
 
 </div>
 
 
-<!-- ADD FOOD -->
+<!-- =================================
+     ADD FOOD BUTTON
+================================= -->
 
 <button
     class="add-food-button"
-    id="openAddFood"
+    id="addFoodButton"
     type="button"
 >
     ＋ Добавить еду
 </button>
 
 
-<!-- ADD FOOD MODAL -->
+<!-- =================================
+     BOTTOM NAV
+================================= -->
+
+<nav class="bottom-nav">
+
+    <button
+        class="nav-button active"
+        data-tab="Home"
+        type="button"
+    >
+
+        <span class="nav-icon">
+            🏠
+        </span>
+
+        <span>
+            Главная
+        </span>
+
+    </button>
+
+
+    <button
+        class="nav-button"
+        data-tab="Diary"
+        type="button"
+    >
+
+        <span class="nav-icon">
+            📖
+        </span>
+
+        <span>
+            Дневник
+        </span>
+
+    </button>
+
+
+    <button
+        class="nav-button"
+        data-tab="Products"
+        type="button"
+    >
+
+        <span class="nav-icon">
+            🥗
+        </span>
+
+        <span>
+            Продукты
+        </span>
+
+    </button>
+
+
+    <button
+        class="nav-button"
+        data-tab="Profile"
+        type="button"
+    >
+
+        <span class="nav-icon">
+            👤
+        </span>
+
+        <span>
+            Профиль
+        </span>
+
+    </button>
+
+</nav>
+
+
+<!-- =================================
+     ADD FOOD MODAL
+================================= -->
 
 <div
     class="modal hidden"
@@ -759,10 +1219,21 @@ button.main-button {
 
         <select id="meal">
 
-            <option>Завтрак</option>
-            <option>Обед</option>
-            <option>Ужин</option>
-            <option>Перекус</option>
+            <option>
+                Завтрак
+            </option>
+
+            <option>
+                Обед
+            </option>
+
+            <option>
+                Ужин
+            </option>
+
+            <option>
+                Перекус
+            </option>
 
         </select>
 
@@ -789,7 +1260,6 @@ button.main-button {
 
 
         <div
-            class="product-list"
             id="productList"
         ></div>
 
@@ -802,6 +1272,7 @@ button.main-button {
             <label>
                 Количество, г
             </label>
+
 
             <div class="grams-buttons">
 
@@ -864,7 +1335,7 @@ button.main-button {
 
         <button
             class="secondary-button"
-            id="newProduct"
+            id="newProductFromAdd"
             type="button"
         >
             ＋ Создать свой продукт
@@ -875,7 +1346,9 @@ button.main-button {
 </div>
 
 
-<!-- NEW PRODUCT -->
+<!-- =================================
+     NEW PRODUCT MODAL
+================================= -->
 
 <div
     class="modal hidden"
@@ -922,12 +1395,29 @@ button.main-button {
 
         <select id="newCat">
 
-            <option>Другое</option>
-            <option>Мясо</option>
-            <option>Крупы</option>
-            <option>Молочка</option>
-            <option>Фрукты</option>
-            <option>Овощи</option>
+            <option>
+                Другое
+            </option>
+
+            <option>
+                Мясо
+            </option>
+
+            <option>
+                Крупы
+            </option>
+
+            <option>
+                Молочка
+            </option>
+
+            <option>
+                Фрукты
+            </option>
+
+            <option>
+                Овощи
+            </option>
 
         </select>
 
@@ -1023,7 +1513,9 @@ button.main-button {
 </div>
 
 
-<!-- PROFILE -->
+<!-- =================================
+     PROFILE MODAL
+================================= -->
 
 <div
     class="modal hidden"
@@ -1180,16 +1672,10 @@ button.main-button {
 const tg = window.Telegram?.WebApp;
 
 if (tg) {
+
     tg.ready();
     tg.expand();
 
-    if (tg.setHeaderColor) {
-        tg.setHeaderColor(
-            getComputedStyle(document.documentElement)
-                .getPropertyValue("--tg-theme-bg-color")
-                .trim() || "#f4f5f7"
-        );
-    }
 }
 
 
@@ -1202,7 +1688,7 @@ const $ = id =>
 
 
 /* =========================================
-   PRODUCTS
+   BASE PRODUCTS
 ========================================= */
 
 const baseProducts = [
@@ -1347,12 +1833,7 @@ function readStorage(key, fallback) {
 
         return JSON.parse(value);
 
-    } catch (error) {
-
-        console.error(
-            "Storage error:",
-            error
-        );
+    } catch {
 
         return fallback;
 
@@ -1372,10 +1853,7 @@ function writeStorage(key, value) {
 
     } catch (error) {
 
-        console.error(
-            "Storage save error:",
-            error
-        );
+        console.error(error);
 
     }
 
@@ -1397,13 +1875,11 @@ let products = [
     ...custom
 ];
 
-
 let profile =
     readStorage(
         "kbjuProfile",
         null
     );
-
 
 let diary =
     readStorage(
@@ -1438,7 +1914,7 @@ let category = "Все";
 
 
 /* =========================================
-   SAVE EVERYTHING
+   SAVE
 ========================================= */
 
 function save() {
@@ -1462,7 +1938,7 @@ function save() {
 
 
 /* =========================================
-   TARGETS
+   CALCULATE TARGETS
 ========================================= */
 
 function calcTargets() {
@@ -1496,7 +1972,7 @@ function calcTargets() {
 
 
     if (profile.goal === "loss") {
-        cal *= 0.85;
+        cal *= .85;
     }
 
     if (profile.goal === "gain") {
@@ -1504,7 +1980,8 @@ function calcTargets() {
     }
 
 
-    cal = Math.round(cal);
+    cal =
+        Math.round(cal);
 
 
     const p =
@@ -1515,7 +1992,7 @@ function calcTargets() {
 
     const f =
         Math.round(
-            Number(profile.weight) * 0.8
+            Number(profile.weight) * .8
         );
 
 
@@ -1550,17 +2027,14 @@ function totals() {
 
     return diary.items.reduce(
 
-        (result, item) => {
+        (sum, item) => {
 
-            result.cal += Number(item.cal) || 0;
+            sum.cal += Number(item.cal) || 0;
+            sum.p += Number(item.p) || 0;
+            sum.f += Number(item.f) || 0;
+            sum.c += Number(item.c) || 0;
 
-            result.p += Number(item.p) || 0;
-
-            result.f += Number(item.f) || 0;
-
-            result.c += Number(item.c) || 0;
-
-            return result;
+            return sum;
 
         },
 
@@ -1577,6 +2051,119 @@ function totals() {
 
 
 /* =========================================
+   ESCAPE
+========================================= */
+
+function escapeHtml(value) {
+
+    return String(value)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+
+}
+
+
+/* =========================================
+   MEAL ICON
+========================================= */
+
+function mealIcon(meal) {
+
+    if (meal === "Завтрак") return "🍳";
+    if (meal === "Обед") return "🍲";
+    if (meal === "Ужин") return "🌙";
+
+    return "🍎";
+
+}
+
+
+/* =========================================
+   NAVIGATION
+========================================= */
+
+function switchTab(tabName) {
+
+    document
+        .querySelectorAll(".tab")
+        .forEach(tab => {
+
+            tab.classList.remove(
+                "active"
+            );
+
+        });
+
+
+    const target =
+        $("tab" + tabName);
+
+
+    if (target) {
+
+        target.classList.add(
+            "active"
+        );
+
+    }
+
+
+    document
+        .querySelectorAll(".nav-button")
+        .forEach(button => {
+
+            button.classList.toggle(
+                "active",
+                button.dataset.tab === tabName
+            );
+
+        });
+
+
+    if (tabName === "Products") {
+
+        renderProductPage();
+
+    }
+
+
+    if (tabName === "Profile") {
+
+        renderProfile();
+
+    }
+
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+
+}
+
+
+document
+    .querySelectorAll(".nav-button")
+    .forEach(button => {
+
+        button.addEventListener(
+            "click",
+            () => {
+
+                switchTab(
+                    button.dataset.tab
+                );
+
+            }
+        );
+
+    });
+
+
+/* =========================================
    DATE
 ========================================= */
 
@@ -1584,6 +2171,7 @@ function renderDate() {
 
     const date =
         new Date();
+
 
     const text =
         date.toLocaleDateString(
@@ -1598,55 +2186,141 @@ function renderDate() {
     $("dateText").textContent =
         "Сегодня, " + text;
 
-}
 
-
-/* =========================================
-   MEAL ICON
-========================================= */
-
-function mealIcon(meal) {
-
-    if (meal === "Завтрак") {
-        return "🍳";
-    }
-
-    if (meal === "Обед") {
-        return "🍲";
-    }
-
-    if (meal === "Ужин") {
-        return "🌙";
-    }
-
-    return "🍎";
+    $("diaryDate").textContent =
+        text;
 
 }
 
 
 /* =========================================
-   DELETE FOOD
+   MEALS HTML
 ========================================= */
 
-function removeFood(index) {
+function mealsHtml() {
 
-    if (
-        index < 0 ||
-        index >= diary.items.length
-    ) {
-        return;
-    }
-
-
-    diary.items.splice(
-        index,
-        1
-    );
+    const meals = [
+        "Завтрак",
+        "Обед",
+        "Ужин",
+        "Перекус"
+    ];
 
 
-    save();
+    return meals.map(meal => {
 
-    render();
+        const items =
+            diary.items.filter(
+                item =>
+                    item.meal === meal
+            );
+
+
+        const calories =
+            items.reduce(
+                (sum, item) =>
+                    sum +
+                    Number(item.cal || 0),
+                0
+            );
+
+
+        const foodHtml =
+            items.length
+
+                ?
+
+            items.map(item => {
+
+                const index =
+                    diary.items.indexOf(
+                        item
+                    );
+
+
+                return `
+
+                    <div class="meal-food">
+
+                        <div class="meal-food-top">
+
+                            <span class="meal-food-name">
+                                ${escapeHtml(item.name)}
+                                · ${item.grams} г
+                            </span>
+
+                            <span class="meal-food-cal">
+                                ${Math.round(item.cal)} ккал
+                            </span>
+
+                        </div>
+
+                        <div class="meal-food-info">
+                            Б ${Number(item.p).toFixed(1)} г ·
+                            Ж ${Number(item.f).toFixed(1)} г ·
+                            У ${Number(item.c).toFixed(1)} г
+                        </div>
+
+                        <button
+                            class="delete-food"
+                            type="button"
+                            data-delete="${index}"
+                        >
+                            Удалить
+                        </button>
+
+                    </div>
+
+                `;
+
+            }).join("")
+
+                :
+
+            `
+                <div class="empty-meal">
+                    Пока ничего не добавлено
+                </div>
+            `;
+
+
+        return `
+
+            <div class="meal-card">
+
+                <div class="meal-header">
+
+                    <div class="meal-left">
+
+                        <div class="meal-icon">
+                            ${mealIcon(meal)}
+                        </div>
+
+                        <div>
+
+                            <div class="meal-name">
+                                ${meal}
+                            </div>
+
+                            <div class="meal-cal">
+                                ${Math.round(calories)} ккал
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="meal-items">
+                    ${foodHtml}
+                </div>
+
+            </div>
+
+        `;
+
+    }).join("");
 
 }
 
@@ -1657,196 +2331,52 @@ function removeFood(index) {
 
 function renderMeals() {
 
-    const meals = [
-        "Завтрак",
-        "Обед",
-        "Ужин",
-        "Перекус"
-    ];
+    const html =
+        mealsHtml();
 
 
-    $("meals").innerHTML =
-        meals.map(meal => {
-
-            const items =
-                diary.items.filter(
-                    item =>
-                        item.meal === meal
-                );
+    $("homeMeals").innerHTML =
+        html;
 
 
-            const calories =
-                items.reduce(
-                    (sum, item) =>
-                        sum +
-                        Number(item.cal || 0),
-                    0
-                );
-
-
-            const foodHtml =
-
-                items.length
-
-                    ?
-
-                items.map(item => {
-
-                    const index =
-                        diary.items.indexOf(
-                            item
-                        );
-
-
-                    return `
-
-                        <div class="meal-food">
-
-                            <div class="meal-food-top">
-
-                                <span class="meal-food-name">
-                                    ${escapeHtml(item.name)}
-                                    ·
-                                    ${Number(item.grams)} г
-                                </span>
-
-                                <span class="meal-food-cal">
-                                    ${Math.round(
-                                        Number(item.cal)
-                                    )} ккал
-                                </span>
-
-                            </div>
-
-
-                            <div class="meal-food-info">
-
-                                Б ${Number(item.p).toFixed(1)} г ·
-                                Ж ${Number(item.f).toFixed(1)} г ·
-                                У ${Number(item.c).toFixed(1)} г
-
-                            </div>
-
-
-                            <button
-                                class="delete-food"
-                                type="button"
-                                data-delete-index="${index}"
-                            >
-                                Удалить
-                            </button>
-
-                        </div>
-
-                    `;
-
-                }).join("")
-
-                    :
-
-                `
-                    <div class="empty-meal">
-                        Пока ничего не добавлено
-                    </div>
-                `;
-
-
-            return `
-
-                <div class="meal-card">
-
-                    <div class="meal-header">
-
-                        <div class="meal-left">
-
-                            <div class="meal-icon">
-                                ${mealIcon(meal)}
-                            </div>
-
-                            <div>
-
-                                <div class="meal-name">
-                                    ${meal}
-                                </div>
-
-                                <div class="meal-cal">
-                                    ${Math.round(calories)} ккал
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="meal-items">
-
-                        ${foodHtml}
-
-                    </div>
-
-                </div>
-
-            `;
-
-        }).join("");
+    $("diaryMeals").innerHTML =
+        html;
 
 
     document
         .querySelectorAll(
-            "[data-delete-index]"
+            "[data-delete]"
         )
         .forEach(button => {
 
-            button.addEventListener(
-                "click",
-                () => {
+            button.onclick = () => {
 
-                    const index =
-                        Number(
-                            button.dataset
-                                .deleteIndex
-                        );
+                const index =
+                    Number(
+                        button.dataset.delete
+                    );
 
 
-                    removeFood(index);
+                if (
+                    index >= 0 &&
+                    index <
+                    diary.items.length
+                ) {
+
+                    diary.items.splice(
+                        index,
+                        1
+                    );
+
+                    save();
+
+                    render();
 
                 }
-            );
+
+            };
 
         });
-
-}
-
-
-/* =========================================
-   ESCAPE HTML
-========================================= */
-
-function escapeHtml(value) {
-
-    return String(value)
-        .replace(
-            /&/g,
-            "&amp;"
-        )
-        .replace(
-            /</g,
-            "&lt;"
-        )
-        .replace(
-            />/g,
-            "&gt;"
-        )
-        .replace(
-            /"/g,
-            "&quot;"
-        )
-        .replace(
-            /'/g,
-            "&#039;"
-        );
 
 }
 
@@ -1857,35 +2387,52 @@ function escapeHtml(value) {
 
 function render() {
 
+    renderDate();
+
+
     if (!profile) {
 
-        $("leftCal").textContent = "0";
+        [
+            "leftCal",
+            "eatenCal",
+            "targetCal",
+            "eatenP",
+            "targetP",
+            "leftP",
+            "eatenF",
+            "targetF",
+            "leftF",
+            "eatenC",
+            "targetC",
+            "leftC"
+        ].forEach(id => {
 
-        $("eatenCal").textContent = "0";
+            if ($(id)) {
 
-        $("targetCal").textContent = "0";
+                $(id).textContent =
+                    "0";
 
-        $("eatenP").textContent = "0";
+            }
 
-        $("eatenF").textContent = "0";
+        });
 
-        $("eatenC").textContent = "0";
 
-        $("targetP").textContent = "0";
+        $("calBar").style.width =
+            "0%";
 
-        $("targetF").textContent = "0";
 
-        $("targetC").textContent = "0";
+        $("homeMeals").innerHTML =
+            "";
 
-        $("leftP").textContent = "0";
 
-        $("leftF").textContent = "0";
+        $("diaryMeals").innerHTML =
+            "";
 
-        $("leftC").textContent = "0";
 
-        $("calBar").style.width = "0%";
+        openModal(
+            "profileModal"
+        );
 
-        openModal("profileModal");
 
         return;
 
@@ -1902,7 +2449,7 @@ function render() {
 
     /* CALORIES */
 
-    const leftCal =
+    $("leftCal").textContent =
         Math.max(
             0,
             Math.round(
@@ -1910,10 +2457,6 @@ function render() {
                 eaten.cal
             )
         );
-
-
-    $("leftCal").textContent =
-        leftCal;
 
 
     $("eatenCal").textContent =
@@ -1926,7 +2469,7 @@ function render() {
         target.cal;
 
 
-    const calPercent =
+    const percent =
         target.cal > 0
             ? eaten.cal /
               target.cal *
@@ -1937,21 +2480,17 @@ function render() {
     $("calBar").style.width =
         Math.min(
             100,
-            calPercent
+            percent
         ) + "%";
 
 
-    /* PROTEINS */
+    /* PROTEIN */
 
     $("eatenP").textContent =
-        Math.round(
-            eaten.p
-        );
-
+        Math.round(eaten.p);
 
     $("targetP").textContent =
         target.p;
-
 
     $("leftP").textContent =
         Math.max(
@@ -1963,17 +2502,13 @@ function render() {
         );
 
 
-    /* FATS */
+    /* FAT */
 
     $("eatenF").textContent =
-        Math.round(
-            eaten.f
-        );
-
+        Math.round(eaten.f);
 
     $("targetF").textContent =
         target.f;
-
 
     $("leftF").textContent =
         Math.max(
@@ -1988,14 +2523,10 @@ function render() {
     /* CARBS */
 
     $("eatenC").textContent =
-        Math.round(
-            eaten.c
-        );
-
+        Math.round(eaten.c);
 
     $("targetC").textContent =
         target.c;
-
 
     $("leftC").textContent =
         Math.max(
@@ -2009,16 +2540,14 @@ function render() {
 
     /* GOAL */
 
-    $("goalText").textContent =
+    const goalText =
 
         profile.goal === "loss"
-
             ? "Похудение"
 
             :
 
         profile.goal === "gain"
-
             ? "Набор массы"
 
             :
@@ -2026,115 +2555,254 @@ function render() {
         "Поддержание";
 
 
+    $("homeGoal").textContent =
+        goalText;
+
+
+    /* DIARY TOTALS */
+
+    $("diaryCal").textContent =
+        Math.round(eaten.cal);
+
+    $("diaryP").textContent =
+        Math.round(eaten.p);
+
+    $("diaryF").textContent =
+        Math.round(eaten.f);
+
+    $("diaryC").textContent =
+        Math.round(eaten.c);
+
+
     renderMeals();
 
-}
-
-
-/* =========================================
-   MODALS
-========================================= */
-
-function openModal(id) {
-
-    $(id)
-        .classList
-        .remove("hidden");
+    renderProfile();
 
 }
-
-
-function closeModal(id) {
-
-    $(id)
-        .classList
-        .add("hidden");
-
-}
-
-
-/* =========================================
-   CLOSE BUTTONS
-========================================= */
-
-$("closeAddModal").onclick =
-    () => closeModal("addModal");
-
-
-$("closeProductModal").onclick =
-    () => closeModal("productModal");
-
-
-$("closeProfileModal").onclick =
-    () => closeModal("profileModal");
-
-
-/* =========================================
-   CLOSE BY BACKGROUND
-========================================= */
-
-document
-    .querySelectorAll(".modal")
-    .forEach(modal => {
-
-        modal.addEventListener(
-            "click",
-            event => {
-
-                if (
-                    event.target === modal
-                ) {
-
-                    closeModal(
-                        modal.id
-                    );
-
-                }
-
-            }
-        );
-
-    });
 
 
 /* =========================================
    PROFILE
 ========================================= */
 
-$("profileButton").onclick = () => {
+function renderProfile() {
 
-    if (profile) {
+    if (!profile) {
 
-        $("gender").value =
-            profile.gender;
+        $("profileInfo").innerHTML = `
 
-        $("age").value =
-            profile.age;
+            <div class="hint">
+                Профиль ещё не заполнен.
+            </div>
 
-        $("height").value =
-            profile.height;
+        `;
 
-        $("weight").value =
-            profile.weight;
-
-        $("activity").value =
-            profile.activity;
-
-        $("goal").value =
-            profile.goal;
+        return;
 
     }
 
+
+    const target =
+        calcTargets();
+
+
+    const gender =
+        profile.gender === "male"
+            ? "Мужчина"
+            : "Женщина";
+
+
+    const goal =
+
+        profile.goal === "loss"
+            ? "Похудение"
+
+            :
+
+        profile.goal === "gain"
+            ? "Набор массы"
+
+            :
+
+        "Поддержание";
+
+
+    $("profileInfo").innerHTML = `
+
+        <div class="profile-row">
+
+            <span class="profile-label">
+                Пол
+            </span>
+
+            <span class="profile-value">
+                ${gender}
+            </span>
+
+        </div>
+
+
+        <div class="profile-row">
+
+            <span class="profile-label">
+                Возраст
+            </span>
+
+            <span class="profile-value">
+                ${profile.age} лет
+            </span>
+
+        </div>
+
+
+        <div class="profile-row">
+
+            <span class="profile-label">
+                Рост
+            </span>
+
+            <span class="profile-value">
+                ${profile.height} см
+            </span>
+
+        </div>
+
+
+        <div class="profile-row">
+
+            <span class="profile-label">
+                Вес
+            </span>
+
+            <span class="profile-value">
+                ${profile.weight} кг
+            </span>
+
+        </div>
+
+
+        <div class="profile-row">
+
+            <span class="profile-label">
+                Цель
+            </span>
+
+            <span class="profile-value">
+                ${goal}
+            </span>
+
+        </div>
+
+
+        <div class="profile-row">
+
+            <span class="profile-label">
+                Калории
+            </span>
+
+            <span class="profile-value">
+                ${target.cal} ккал
+            </span>
+
+        </div>
+
+
+        <div class="profile-row">
+
+            <span class="profile-label">
+                Белки
+            </span>
+
+            <span class="profile-value">
+                ${target.p} г
+            </span>
+
+        </div>
+
+
+        <div class="profile-row">
+
+            <span class="profile-label">
+                Жиры
+            </span>
+
+            <span class="profile-value">
+                ${target.f} г
+            </span>
+
+        </div>
+
+
+        <div class="profile-row">
+
+            <span class="profile-label">
+                Углеводы
+            </span>
+
+            <span class="profile-value">
+                ${target.c} г
+            </span>
+
+        </div>
+
+    `;
+
+}
+
+
+/* =========================================
+   PROFILE MODAL
+========================================= */
+
+function fillProfileForm() {
+
+    if (!profile) {
+        return;
+    }
+
+
+    $("gender").value =
+        profile.gender;
+
+    $("age").value =
+        profile.age;
+
+    $("height").value =
+        profile.height;
+
+    $("weight").value =
+        profile.weight;
+
+    $("activity").value =
+        profile.activity;
+
+    $("goal").value =
+        profile.goal;
+
+}
+
+
+function openProfile() {
+
+    fillProfileForm();
 
     openModal(
         "profileModal"
     );
 
-};
+}
+
+
+$("headerProfileButton").onclick =
+    openProfile;
+
+
+$("editProfile").onclick =
+    openProfile;
 
 
 /* =========================================
-   SAVE PROFILE
+   PROFILE SAVE
 ========================================= */
 
 $("calc").onclick = () => {
@@ -2211,37 +2879,112 @@ $("calc").onclick = () => {
 
 
 /* =========================================
-   OPEN ADD FOOD
+   MODALS
 ========================================= */
 
-$("openAddFood").onclick = () => {
+function openModal(id) {
 
-    openModal(
-        "addModal"
-    );
+    $(id)
+        .classList
+        .remove("hidden");
+
+}
+
+
+function closeModal(id) {
+
+    $(id)
+        .classList
+        .add("hidden");
+
+}
+
+
+$("closeAddModal").onclick =
+    () =>
+        closeModal("addModal");
+
+
+$("closeProductModal").onclick =
+    () =>
+        closeModal("productModal");
+
+
+$("closeProfileModal").onclick =
+    () =>
+        closeModal("profileModal");
+
+
+document
+    .querySelectorAll(".modal")
+    .forEach(modal => {
+
+        modal.addEventListener(
+            "click",
+            event => {
+
+                if (
+                    event.target === modal
+                ) {
+
+                    closeModal(
+                        modal.id
+                    );
+
+                }
+
+            }
+        );
+
+    });
+
+
+/* =========================================
+   ADD FOOD
+========================================= */
+
+$("addFoodButton").onclick = () => {
+
+    selected = null;
+
+    category = "Все";
+
+    $("search").value = "";
+
+    $("selectedBlock")
+        .classList
+        .add("hidden");
 
 
     renderCategories();
 
     renderProducts();
 
+
+    openModal(
+        "addModal"
+    );
+
 };
 
 
 /* =========================================
-   CATEGORIES
+   ADD FOOD MODAL
 ========================================= */
 
 function renderCategories() {
 
     const cats = [
+
         "Все",
+
         ...new Set(
             products.map(
                 product =>
                     product.cat
             )
         )
+
     ];
 
 
@@ -2255,7 +2998,7 @@ function renderCategories() {
                         : ""
                 }"
                 type="button"
-                data-category="${escapeHtml(cat)}"
+                data-cat="${escapeHtml(cat)}"
             >
                 ${escapeHtml(cat)}
             </button>
@@ -2264,15 +3007,13 @@ function renderCategories() {
 
 
     document
-        .querySelectorAll(
-            "[data-category]"
-        )
+        .querySelectorAll("[data-cat]")
         .forEach(button => {
 
             button.onclick = () => {
 
                 category =
-                    button.dataset.category;
+                    button.dataset.cat;
 
                 renderCategories();
 
@@ -2284,10 +3025,6 @@ function renderCategories() {
 
 }
 
-
-/* =========================================
-   PRODUCTS
-========================================= */
 
 function renderProducts() {
 
@@ -2329,28 +3066,36 @@ function renderProducts() {
         list.map(product => `
 
             <div
-                class="product-option ${
-                    selected &&
-                    selected.id === product.id
-                        ? "selected"
-                        : ""
-                }"
-                data-product-id="${product.id}"
+                class="product-option"
+                data-select-product="${product.id}"
             >
 
-                <b>
-                    ${escapeHtml(
-                        product.name
-                    )}
-                </b>
+                <div class="product-option-top">
 
-                <span>
-                    ${product.kcal} ккал ·
-                    Б ${product.p} ·
-                    Ж ${product.f} ·
-                    У ${product.c}
-                    на 100 г
-                </span>
+                    <div>
+
+                        <div class="product-option-name">
+                            ${escapeHtml(product.name)}
+                        </div>
+
+                        <div class="product-option-info">
+                            ${product.kcal} ккал ·
+                            Б ${product.p} ·
+                            Ж ${product.f} ·
+                            У ${product.c}
+                            на 100 г
+                        </div>
+
+                    </div>
+
+                    <button
+                        class="product-add"
+                        type="button"
+                    >
+                        +
+                    </button>
+
+                </div>
 
             </div>
 
@@ -2367,7 +3112,7 @@ function renderProducts() {
 
     document
         .querySelectorAll(
-            "[data-product-id]"
+            "[data-select-product]"
         )
         .forEach(element => {
 
@@ -2376,7 +3121,7 @@ function renderProducts() {
                 const id =
                     Number(
                         element.dataset
-                            .productId
+                            .selectProduct
                     );
 
 
@@ -2403,27 +3148,18 @@ function renderProducts() {
 }
 
 
-/* =========================================
-   SEARCH
-========================================= */
-
 $("search").oninput =
     renderProducts;
 
 
-/* =========================================
-   PREVIEW
-========================================= */
+$("grams").oninput =
+    preview;
+
 
 function preview() {
 
     if (!selected) {
-
-        $("preview").textContent =
-            "";
-
         return;
-
     }
 
 
@@ -2434,25 +3170,25 @@ function preview() {
 
 
     const kcal =
-        selected.kcal *
+        Number(selected.kcal) *
         grams /
         100;
 
 
     const p =
-        selected.p *
+        Number(selected.p) *
         grams /
         100;
 
 
     const f =
-        selected.f *
+        Number(selected.f) *
         grams /
         100;
 
 
     const c =
-        selected.c *
+        Number(selected.c) *
         grams /
         100;
 
@@ -2460,23 +3196,14 @@ function preview() {
     $("preview").textContent =
 
         `${Math.round(kcal)} ккал · ` +
-
         `Б ${p.toFixed(1)} г · ` +
-
         `Ж ${f.toFixed(1)} г · ` +
-
         `У ${c.toFixed(1)} г`;
 
 }
 
 
-$("grams").oninput =
-    preview;
-
-
-/* =========================================
-   QUICK GRAMS
-========================================= */
+/* QUICK GRAMS */
 
 document
     .querySelectorAll("[data-g]")
@@ -2501,9 +3228,7 @@ document
 $("add").onclick = () => {
 
     if (!selected) {
-
         return;
-
     }
 
 
@@ -2517,13 +3242,11 @@ $("add").onclick = () => {
         !grams ||
         grams <= 0
     ) {
-
         return;
-
     }
 
 
-    const item = {
+    diary.items.push({
 
         id:
             Date.now() +
@@ -2538,45 +3261,30 @@ $("add").onclick = () => {
         grams,
 
         cal:
-            Number(
-                selected.kcal
-            ) *
+            Number(selected.kcal) *
             grams /
             100,
 
         p:
-            Number(
-                selected.p
-            ) *
+            Number(selected.p) *
             grams /
             100,
 
         f:
-            Number(
-                selected.f
-            ) *
+            Number(selected.f) *
             grams /
             100,
 
         c:
-            Number(
-                selected.c
-            ) *
+            Number(selected.c) *
             grams /
             100
 
-    };
-
-
-    diary.items.push(
-        item
-    );
+    });
 
 
     save();
 
-
-    /* RESET */
 
     selected = null;
 
@@ -2585,6 +3293,7 @@ $("add").onclick = () => {
     $("search").value = "";
 
     $("grams").value = "100";
+
 
     $("selectedBlock")
         .classList
@@ -2598,14 +3307,287 @@ $("add").onclick = () => {
 
     render();
 
+
+    switchTab("Home");
+
 };
+
+
+/* =========================================
+   PRODUCT PAGE
+========================================= */
+
+function renderProductPage() {
+
+    const query =
+        $("productSearch")
+            .value
+            .trim()
+            .toLowerCase();
+
+
+    const list =
+        products.filter(product => {
+
+            return product.name
+                .toLowerCase()
+                .includes(query);
+
+        });
+
+
+    $("productCount").textContent =
+        list.length;
+
+
+    $("productsList").innerHTML =
+
+        list.length
+
+            ?
+
+        list.map(product => `
+
+            <div class="page-card">
+
+                <div class="product-option-top">
+
+                    <div>
+
+                        <div class="product-option-name">
+                            ${escapeHtml(product.name)}
+                        </div>
+
+                        <div class="product-option-info">
+                            ${product.cat}
+                            ·
+                            ${product.kcal} ккал
+                            · Б ${product.p}
+                            · Ж ${product.f}
+                            · У ${product.c}
+                            на 100 г
+                        </div>
+
+                    </div>
+
+                    <button
+                        class="product-add"
+                        type="button"
+                        data-page-product="${product.id}"
+                    >
+                        +
+                    </button>
+
+                </div>
+
+            </div>
+
+        `).join("")
+
+            :
+
+        `
+            <div class="page-card">
+
+                <div class="hint">
+                    Продукты не найдены.
+                </div>
+
+            </div>
+        `;
+
+
+    document
+        .querySelectorAll(
+            "[data-page-product]"
+        )
+        .forEach(button => {
+
+            button.onclick = () => {
+
+                const id =
+                    Number(
+                        button.dataset
+                            .pageProduct
+                    );
+
+
+                selected =
+                    products.find(
+                        product =>
+                            product.id === id
+                    );
+
+
+                category = "Все";
+
+                $("search").value = "";
+
+
+                $("selectedBlock")
+                    .classList
+                    .remove("hidden");
+
+
+                renderCategories();
+
+                renderProducts();
+
+                preview();
+
+
+                openModal(
+                    "addModal"
+                );
+
+            };
+
+        });
+
+
+    renderProductCategories();
+
+}
+
+
+function renderProductCategories() {
+
+    const cats = [
+
+        "Все",
+
+        ...new Set(
+            products.map(
+                product =>
+                    product.cat
+            )
+        )
+
+    ];
+
+
+    $("productCategories").innerHTML =
+        cats.map(cat => `
+
+            <button
+                class="category ${
+                    category === cat
+                        ? "active"
+                        : ""
+                }"
+                type="button"
+                data-page-cat="${escapeHtml(cat)}"
+            >
+                ${escapeHtml(cat)}
+            </button>
+
+        `).join("");
+
+
+    document
+        .querySelectorAll(
+            "[data-page-cat]"
+        )
+        .forEach(button => {
+
+            button.onclick = () => {
+
+                category =
+                    button.dataset
+                        .pageCat;
+
+
+                const query =
+                    $("productSearch")
+                        .value
+                        .trim()
+                        .toLowerCase();
+
+
+                const list =
+                    products.filter(product => {
+
+                        const categoryMatch =
+                            category === "Все" ||
+                            product.cat === category;
+
+
+                        const searchMatch =
+                            product.name
+                                .toLowerCase()
+                                .includes(query);
+
+
+                        return (
+                            categoryMatch &&
+                            searchMatch
+                        );
+
+                    });
+
+
+                $("productCount").textContent =
+                    list.length;
+
+
+                $("productsList").innerHTML =
+
+                    list.map(product => `
+
+                        <div class="page-card">
+
+                            <div class="product-option-top">
+
+                                <div>
+
+                                    <div class="product-option-name">
+                                        ${escapeHtml(product.name)}
+                                    </div>
+
+                                    <div class="product-option-info">
+                                        ${product.cat}
+                                        · ${product.kcal} ккал
+                                        · Б ${product.p}
+                                        · Ж ${product.f}
+                                        · У ${product.c}
+                                        на 100 г
+                                    </div>
+
+                                </div>
+
+                                <button
+                                    class="product-add"
+                                    type="button"
+                                    data-page-product="${product.id}"
+                                >
+                                    +
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    `).join("");
+
+
+                renderProductPage();
+
+            };
+
+        });
+
+}
+
+
+$("productSearch").oninput =
+    renderProductPage;
 
 
 /* =========================================
    NEW PRODUCT
 ========================================= */
 
-$("newProduct").onclick = () => {
+function openNewProductModal() {
 
     closeModal(
         "addModal"
@@ -2615,7 +3597,15 @@ $("newProduct").onclick = () => {
         "productModal"
     );
 
-};
+}
+
+
+$("openNewProduct").onclick =
+    openNewProductModal;
+
+
+$("newProductFromAdd").onclick =
+    openNewProductModal;
 
 
 /* =========================================
@@ -2709,8 +3699,6 @@ $("saveProduct").onclick = () => {
     save();
 
 
-    /* CLEAR */
-
     $("newName").value = "";
 
     $("newK").value = "";
@@ -2724,77 +3712,30 @@ $("saveProduct").onclick = () => {
     $("newError").textContent = "";
 
 
-    /* SELECT CREATED PRODUCT */
-
-    selected =
-        product;
-
-    category =
-        "Все";
-
-
     closeModal(
         "productModal"
     );
 
 
-    openModal(
-        "addModal"
+    renderProductPage();
+
+
+    switchTab(
+        "Products"
     );
 
-
-    $("selectedBlock")
-        .classList
-        .remove("hidden");
-
-
-    renderCategories();
-
-    renderProducts();
-
-    preview();
-
 };
-
-
-/* =========================================
-   ESCAPE
-========================================= */
-
-document.addEventListener(
-    "keydown",
-    event => {
-
-        if (
-            event.key === "Escape"
-        ) {
-
-            document
-                .querySelectorAll(".modal")
-                .forEach(modal => {
-
-                    modal
-                        .classList
-                        .add("hidden");
-
-                });
-
-        }
-
-    }
-);
 
 
 /* =========================================
    START
 ========================================= */
 
-renderDate();
-
 render();
+
+renderProductPage();
 
 </script>
 
 </body>
 </html>
-```
