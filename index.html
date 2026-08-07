@@ -1788,123 +1788,106 @@ function renderMeals() {
 function render() {
 
     if (!profile) {
-
         openModal("profileModal");
-
         return;
-
     }
 
+    let target = calcTargets();
+    let eaten = totals();
 
-    let target =
-        calcTargets();
+    /* =========================
+       CALORIES
+    ========================= */
 
-    let eaten =
-        totals();
+    let leftCal = Math.max(
+        0,
+        Math.round(target.cal - eaten.cal)
+    );
 
-
-    /* calories */
-
-    let left =
-        Math.max(
-            0,
-            Math.round(
-                target.cal -
-                eaten.cal
-            )
-        );
-
-
-    $("leftCal").textContent =
-        left;
-
+    $("leftCal").textContent = leftCal;
 
     $("eatenCal").textContent =
-        Math.round(
-            eaten.cal
-        );
-
+        Math.round(eaten.cal);
 
     $("targetCal").textContent =
         target.cal;
 
-
     let percentage =
         target.cal > 0
-            ? eaten.cal / target.cal * 100
+            ? (eaten.cal / target.cal) * 100
             : 0;
 
-
     $("calBar").style.width =
-        Math.min(
-            100,
-            percentage
-        ) + "%";
+        Math.min(100, percentage) + "%";
 
 
-    /* macros */
+    /* =========================
+       PROTEINS
+    ========================= */
+
+    let leftP = Math.max(
+        0,
+        Math.round(target.p - eaten.p)
+    );
 
     $("leftP").textContent =
-        Math.max(
-            0,
-            Math.round(
-                target.p - eaten.p
-            )
-        );
-
-
-    $("leftF").textContent =
-        Math.max(
-            0,
-            Math.round(
-                target.f - eaten.f
-            )
-        );
-
-
-    $("leftC").textContent =
-        Math.max(
-            0,
-            Math.round(
-                target.c - eaten.c
-            )
-        );
-
+        leftP;
 
     $("targetP").textContent =
         target.p;
 
 
+    /* =========================
+       FATS
+    ========================= */
+
+    let leftF = Math.max(
+        0,
+        Math.round(target.f - eaten.f)
+    );
+
+    $("leftF").textContent =
+        leftF;
+
     $("targetF").textContent =
         target.f;
 
+
+    /* =========================
+       CARBS
+    ========================= */
+
+    let leftC = Math.max(
+        0,
+        Math.round(target.c - eaten.c)
+    );
+
+    $("leftC").textContent =
+        leftC;
 
     $("targetC").textContent =
         target.c;
 
 
-    /* goal */
+    /* =========================
+       GOAL
+    ========================= */
 
     $("goalText").textContent =
-
         profile.goal === "loss"
-
             ? "Похудение"
+            : profile.goal === "gain"
+                ? "Набор массы"
+                : "Поддержание";
 
-            :
 
-        profile.goal === "gain"
-
-            ? "Набор массы"
-
-            :
-
-        "Поддержание";
-
+    /* =========================
+       MEALS
+    ========================= */
 
     renderMeals();
-
 }
+
 
 
 /* =========================
