@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>КБЖУ Tracker</title>
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:var(--tg-theme-bg-color,#f4f5f7);color:var(--tg-theme-text-color,#111)}
+.app{max-width:540px;margin:auto;padding:16px 14px 40px}
+h1{font-size:28px;margin:4px 0 5px}.sub{margin:0 0 16px;color:var(--tg-theme-hint-color,#777)}
+.card{background:var(--tg-theme-secondary-bg-color,#fff);border-radius:18px;padding:17px;margin-bottom:13px}
+h2{font-size:19px;margin:0 0 14px}
+label{display:block;font-size:13px;color:var(--tg-theme-hint-color,#777);margin:11px 0 6px}
+input,select{width:100%;border:0;border-radius:12px;padding:13px;font-size:16px;background:var(--tg-theme-bg-color,#f4f5f7);color:var(--tg-theme-text-color,#111);outline:none}
+button{width:100%;border:0;border-radius:13px;padding:14px;margin-top:13px;font-size:16px;font-weight:700;background:var(--tg-theme-button-color,#2481cc);color:var(--tg-theme-button-text-color,#fff)}
+.secondary{background:transparent;color:var(--tg-theme-link-color,#2481cc)}
+.danger{color:#e05252;background:transparent}
+.summary{text-align:center}.cal{font-size:38px;font-weight:800}.hint{font-size:13px;color:var(--tg-theme-hint-color,#777)}
+.macros{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:14px}.macro{background:var(--tg-theme-bg-color,#f4f5f7);padding:11px 4px;border-radius:13px;text-align:center}.macro b{font-size:18px}.macro small{display:block;color:var(--tg-theme-hint-color,#777);margin-top:3px}
+.progress{height:9px;border-radius:20px;background:var(--tg-theme-bg-color,#eee);overflow:hidden;margin-top:13px}.bar{height:100%;width:0;background:var(--tg-theme-button-color,#2481cc);transition:.25s}
+.row{display:flex;justify-content:space-between;gap:10px;align-items:center}.meal{padding:13px 0;border-bottom:1px solid rgba(128,128,128,.18)}.meal:last-child{border-bottom:0}
+.food{padding:12px 0;border-bottom:1px solid rgba(128,128,128,.16)}.food:last-child{border-bottom:0}.food-name{font-weight:650}.food-info{font-size:13px;color:var(--tg-theme-hint-color,#777);margin-top:3px}
+.delete{width:auto;margin:0;padding:5px 9px;background:transparent;color:#e05252;font-size:13px}
+.hidden{display:none}.error{color:#d93025;font-size:13px;margin-top:9px}
+.categories{display:flex;gap:7px;overflow-x:auto;padding-bottom:3px}.cat{width:auto;margin:0;padding:9px 12px;white-space:nowrap;font-size:13px;background:var(--tg-theme-bg-color,#f4f5f7);color:var(--tg-theme-text-color,#111)}.cat.active{background:var(--tg-theme-button-color,#2481cc);color:var(--tg-theme-button-text-color,#fff)}
+.product-list{margin-top:12px}.product-option{padding:12px;border-radius:12px;background:var(--tg-theme-bg-color,#f4f5f7);margin-bottom:7px;cursor:pointer}.product-option.selected{outline:2px solid var(--tg-theme-button-color,#2481cc)}
+.product-option b{display:block}.product-option span{font-size:12px;color:var(--tg-theme-hint-color,#777)}
+.grams-buttons{display:grid;grid-template-columns:repeat(4,1fr);gap:7px}.grams-buttons button{margin:0;padding:10px 4px;font-size:13px;background:var(--tg-theme-bg-color,#f4f5f7);color:var(--tg-theme-text-color,#111)}
+.preview{margin-top:10px;padding:12px;border-radius:12px;background:var(--tg-theme-bg-color,#f4f5f7);font-size:14px}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.45);display:flex;align-items:flex-end;z-index:10}.modal-box{width:100%;max-width:540px;margin:auto;background:var(--tg-theme-bg-color,#fff);border-radius:22px 22px 0 0;padding:20px}.modal-box h2{margin-bottom:8px}
+.small-btn{width:auto;margin:0;padding:8px 11px;font-size:13px}
+</style>
+</head>
+<body>
+<div class="app">
+<h1>КБЖУ Tracker 🥗</h1>
+<p class="sub">Твой дневник питания</p>
+
+<section class="card" id="profileCard">
+<h2>Профиль</h2>
+<label>Пол</label><select id="gender"><option value="male">Мужчина</option><option value="female">Женщина</option></select>
+<label>Возраст</label><input id="age" type="number" min="14" max="100" placeholder="19">
+<label>Рост, см</label><input id="height" type="number" min="120" max="230" placeholder="180">
+<label>Вес, кг</label><input id="weight" type="number" min="30" max="250" step=".1" placeholder="60">
+<label>Активность</label><select id="activity"><option value="1.2">Минимальная</option><option value="1.375">Лёгкая — 1–3 тренировки</option><option value="1.55">Средняя — 3–5 тренировок</option><option value="1.725">Высокая — 6–7 тренировок</option></select>
+<label>Цель</label><select id="goal"><option value="loss">Похудение</option><option value="maintain">Поддержание</option><option value="gain">Набор массы</option></select>
+<div class="error" id="profileError"></div><button id="calc">Рассчитать КБЖУ</button>
+</section>
+
+<section class="card hidden" id="summaryCard">
+<div class="summary"><div class="hint">Сегодня осталось</div><div class="cal"><span id="leftCal">0</span> ккал</div><div class="progress"><div class="bar" id="calBar"></div></div></div>
+<div class="macros"><div class="macro"><b id="leftP">0</b><small>белки, г</small></div><div class="macro"><b id="leftF">0</b><small>жиры, г</small></div><div class="macro"><b id="leftC">0</b><small>углеводы, г</small></div></div>
+<div style="margin-top:13px;text-align:center"><span class="hint" id="goalText"></span></div>
+</section>
+
+<section class="card hidden" id="diaryCard">
+<div class="row"><h2 style="margin:0">Сегодня 🍽</h2><span class="hint" id="eatenCal">0 ккал</span></div><div id="meals"></div>
+</section>
+
+<section class="card hidden" id="addCard">
+<h2>Добавить продукт</h2>
+<label>Приём пищи</label><select id="meal"><option>Завтрак</option><option>Обед</option><option>Ужин</option><option>Перекус</option></select>
+<label>Поиск продукта</label><input id="search" type="search" placeholder="Например, курица">
+<label>Категория</label>
+<div class="categories" id="categories"></div>
+<div class="product-list" id="productList"></div>
+<div id="selectedBlock" class="hidden">
+<label>Количество, г</label>
+<div class="grams-buttons"><button data-g="50">50</button><button data-g="100">100</button><button data-g="150">150</button><button data-g="200">200</button></div>
+<input id="grams" type="number" min="1" step="1" value="100">
+<div class="preview" id="preview"></div>
+<button id="add">Добавить продукт</button>
+</div>
+<button class="secondary" id="newProduct">＋ Создать свой продукт</button>
+</section>
+
+<section class="card hidden" id="foodsCard">
+<h2>Съедено сегодня</h2><div id="foods"></div><button class="secondary" id="clearDay">Очистить дневник</button>
+</section>
+</div>
+
+<div class="modal hidden" id="modal">
+<div class="modal-box">
+<div class="row"><h2>Новый продукт</h2><button class="small-btn secondary" id="closeModal">Закрыть</button></div>
+<p class="hint">Укажи значения на 100 г продукта.</p>
+<label>Название</label><input id="newName" placeholder="Например, протеин">
+<label>Категория</label><select id="newCat"><option>Другое</option><option>Мясо</option><option>Крупы</option><option>Молочка</option><option>Фрукты</option><option>Овощи</option><option>Другое</option></select>
+<label>Калории, ккал</label><input id="newK" type="number" min="0" step=".1">
+<label>Белки, г</label><input id="newP" type="number" min="0" step=".1">
+<label>Жиры, г</label><input id="newF" type="number" min="0" step=".1">
+<label>Углеводы, г</label><input id="newC" type="number" min="0" step=".1">
+<div class="error" id="newError"></div><button id="saveProduct">Сохранить продукт</button>
+</div></div>
+
+<script>
+const tg=window.Telegram?.WebApp;if(tg){tg.ready();tg.expand();}
+const $=id=>document.getElementById(id);
+
+const baseProducts=[
+{id:1,name:"Куриная грудка",cat:"Мясо",kcal:165,p:31,f:3.6,c:0},
+{id:2,name:"Яйцо куриное",cat:"Молочка",kcal:157,p:13,f:11,c:1.1},
+{id:3,name:"Рис варёный",cat:"Крупы",kcal:130,p:2.7,f:.3,c:28},
+{id:4,name:"Гречка варёная",cat:"Крупы",kcal:110,p:3.6,f:1.1,c:21.6},
+{id:5,name:"Овсянка на воде",cat:"Крупы",kcal:68,p:2.4,f:1.4,c:12},
+{id:6,name:"Творог 5%",cat:"Молочка",kcal:121,p:17.2,f:5,c:1.8},
+{id:7,name:"Банан",cat:"Фрукты",kcal:89,p:1.1,f:.3,c:22.8},
+{id:8,name:"Яблоко",cat:"Фрукты",kcal:52,p:.3,f:.2,c:13.8},
+{id:9,name:"Хлеб",cat:"Крупы",kcal:250,p:8,f:3,c:49},
+{id:10,name:"Молоко 2.5%",cat:"Молочка",kcal:52,p:2.8,f:2.5,c:4.7},
+{id:11,name:"Помидор",cat:"Овощи",kcal:18,p:.9,f:.2,c:3.9},
+{id:12,name:"Огурец",cat:"Овощи",kcal:15,p:.8,f:.1,c:2.5}
+];
+let custom=JSON.parse(localStorage.getItem("kbjuCustomProducts")||"[]");
+let products=[...baseProducts,...custom];
+let profile=JSON.parse(localStorage.getItem("kbjuProfile")||"null");
+let diary=JSON.parse(localStorage.getItem("kbjuDiary")||"null");
+const today=new Date().toISOString().slice(0,10);if(!diary||diary.date!==today)diary={date:today,items:[]};
+let selected=null,category="Все";
+
+function save(){localStorage.setItem("kbjuProfile",JSON.stringify(profile));localStorage.setItem("kbjuDiary",JSON.stringify(diary));localStorage.setItem("kbjuCustomProducts",JSON.stringify(custom));}
+function calcTargets(){let bmr=10*profile.weight+6.25*profile.height-5*profile.age+(profile.gender==="male"?5:-161);let cal=bmr*profile.activity;if(profile.goal==="loss")cal*=.85;if(profile.goal==="gain")cal*=1.10;cal=Math.round(cal);let p=Math.round(profile.weight*2),f=Math.round(profile.weight*.8),c=Math.max(0,Math.round((cal-p*4-f*9)/4));return{cal,p,f,c};}
+function totals(){return diary.items.reduce((a,x)=>{a.cal+=x.cal;a.p+=x.p;a.f+=x.f;a.c+=x.c;return a},{cal:0,p:0,f:0,c:0});}
+
+function renderCategories(){
+let cats=["Все",...new Set(products.map(p=>p.cat))];
+$("categories").innerHTML=cats.map(c=>`<button class="cat ${c===category?"active":""}" data-cat="${c}">${c}</button>`).join("");
+document.querySelectorAll(".cat").forEach(b=>b.onclick=()=>{category=b.dataset.cat;renderProducts();renderCategories();});
+}
+function renderProducts(){
+let q=$("search").value.trim().toLowerCase();
+let list=products.filter(p=>(category==="Все"||p.cat===category)&&p.name.toLowerCase().includes(q));
+$("productList").innerHTML=list.length?list.map(p=>`<div class="product-option ${selected?.id===p.id?"selected":""}" data-id="${p.id}"><b>${p.name}</b><span>${p.kcal} ккал · Б ${p.p} · Ж ${p.f} · У ${p.c} на 100 г</span></div>`).join(""):"<div class='hint'>Ничего не найдено.</div>";
+document.querySelectorAll(".product-option").forEach(el=>el.onclick=()=>{selected=products.find(p=>p.id==el.dataset.id);$("selectedBlock").classList.remove("hidden");renderProducts();preview();});
+}
+function preview(){if(!selected)return;let g=+$("grams").value||0;$("preview").textContent=`${Math.round(selected.kcal*g/100)} ккал · Б ${(selected.p*g/100).toFixed(1)} г · Ж ${(selected.f*g/100).toFixed(1)} г · У ${(selected.c*g/100).toFixed(1)} г`;}
+function render(){
+if(!profile)return;
+["summaryCard","diaryCard","addCard","foodsCard"].forEach(id=>$(id).classList.remove("hidden"));
+let t=calcTargets(),e=totals();
+$("leftCal").textContent=Math.max(0,t.cal-e.cal);$("leftP").textContent=Math.max(0,Math.round(t.p-e.p));$("leftF").textContent=Math.max(0,Math.round(t.f-e.f));$("leftC").textContent=Math.max(0,Math.round(t.c-e.c));
+$("eatenCal").textContent=Math.round(e.cal)+" ккал";$("calBar").style.width=Math.min(100,e.cal/t.cal*100)+"%";
+$("goalText").textContent=profile.goal==="loss"?"Похудение":profile.goal==="gain"?"Набор массы":"Поддержание";
+let meals=["Завтрак","Обед","Ужин","Перекус"];
+$("meals").innerHTML=meals.map(m=>{let a=diary.items.filter(x=>x.meal===m).reduce((s,x)=>s+x.cal,0);return`<div class="meal"><div class="row"><b>${m}</b><span class="hint">${Math.round(a)} ккал</span></div></div>`}).join("");
+$("foods").innerHTML=diary.items.length?diary.items.map((x,i)=>`<div class="food"><div class="row"><div><div class="food-name">${x.name} — ${x.grams} г</div><div class="food-info">${Math.round(x.cal)} ккал · Б ${x.p.toFixed(1)} · Ж ${x.f.toFixed(1)} · У ${x.c.toFixed(1)} · ${x.meal}</div></div><button class="delete" onclick="removeFood(${i})">Удалить</button></div></div>`).join(""):"<div class='hint'>Пока ничего не добавлено.</div>";
+renderCategories();renderProducts();
+}
+function loadProfile(){if(!profile)return;$("gender").value=profile.gender;$("age").value=profile.age;$("height").value=profile.height;$("weight").value=profile.weight;$("activity").value=profile.activity;$("goal").value=profile.goal;render();}
+$("calc").onclick=()=>{let age=+$("age").value,height=+$("height").value,weight=+$("weight").value;if(!age||!height||!weight){$("profileError").textContent="Заполни возраст, рост и вес.";return}profile={gender:$("gender").value,age,height,weight,activity:+$("activity").value,goal:$("goal").value};save();$("profileError").textContent="";render();};
+$("search").oninput=renderProducts;$("grams").oninput=preview;
+document.querySelectorAll("[data-g]").forEach(b=>b.onclick=()=>{$("grams").value=b.dataset.g;preview();});
+$("add").onclick=()=>{if(!selected)return;let g=+$("grams").value;if(!g||g<=0)return;diary.items.push({name:selected.name,meal:$("meal").value,grams:g,cal:selected.kcal*g/100,p:selected.p*g/100,f:selected.f*g/100,c:selected.c*g/100});save();render();$("grams").value=100;preview();};
+window.removeFood=i=>{diary.items.splice(i,1);save();render();};
+$("clearDay").onclick=()=>{if(confirm("Очистить дневник за сегодня?")){diary.items=[];save();render();}};
+
+$("newProduct").onclick=()=>{$("modal").classList.remove("hidden");};
+$("closeModal").onclick=()=>{$("modal").classList.add("hidden");};
+$("saveProduct").onclick=()=>{
+let name=$("newName").value.trim(),k=+$("newK").value,p=+$("newP").value,f=+$("newF").value,c=+$("newC").value;
+if(!name||k<0||p<0||f<0||c<0){$("newError").textContent="Заполни все поля корректно.";return;}
+let item={id:Date.now(),name,cat:$("newCat").value,kcal:k,p,f,c};custom.push(item);products=[...baseProducts,...custom];save();
+$("modal").classList.add("hidden");["newName","newK","newP","newF","newC"].forEach(id=>$(id).value="");$("newError").textContent="";category="Все";selected=item;render();$("selectedBlock").classList.remove("hidden");preview();
+};
+loadProfile();
+</script>
+</body>
+</html>
