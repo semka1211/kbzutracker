@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
@@ -21,13 +22,13 @@ html,body{
 }
 
 body{
-    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
-    background:var(--tg-theme-bg-color,#f4f5f7);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+    background:var(--tg-theme-bg-color,#f3f4f6);
     color:var(--tg-theme-text-color,#111);
 }
 
 button,input,select{
-    font:inherit;
+    font-family:inherit;
 }
 
 button{
@@ -41,395 +42,208 @@ button{
     padding:16px 14px 95px;
 }
 
-/* ================= HEADER ================= */
+/* HEADER */
 
 .header{
     margin-bottom:18px;
 }
 
-.header-top{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-}
-
 .header h1{
     font-size:28px;
-    line-height:1.1;
     margin:0;
+    font-weight:800;
 }
 
 .header p{
-    margin:6px 0 0;
+    margin:5px 0 0;
     color:var(--tg-theme-hint-color,#777);
-    font-size:14px;
 }
 
-/* ================= PAGES ================= */
+/* TABS */
 
-.page{
-    display:none;
+.tabs{
+    position:fixed;
+    left:0;
+    right:0;
+    bottom:0;
+    z-index:50;
+    background:var(--tg-theme-bg-color,#fff);
+    border-top:1px solid rgba(128,128,128,.18);
+    display:flex;
+    justify-content:center;
+    padding:7px 4px calc(7px + env(safe-area-inset-bottom));
 }
 
-.page.active{
+.tab{
+    flex:1;
+    max-width:110px;
+    border:0;
+    background:transparent;
+    color:var(--tg-theme-hint-color,#777);
+    padding:7px 2px;
+    font-size:11px;
+    border-radius:12px;
+}
+
+.tab-icon{
     display:block;
+    font-size:21px;
+    margin-bottom:2px;
 }
 
-/* ================= CARDS ================= */
+.tab.active{
+    color:var(--tg-theme-button-color,#2481cc);
+    font-weight:700;
+}
+
+/* CARDS */
 
 .card{
     background:var(--tg-theme-secondary-bg-color,#fff);
     border-radius:20px;
     padding:17px;
     margin-bottom:13px;
+    box-shadow:0 2px 12px rgba(0,0,0,.035);
 }
 
-.card-title{
-    font-size:18px;
-    font-weight:750;
-    margin:0 0 14px;
+.hidden{
+    display:none!important;
 }
 
-.row{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:10px;
-}
+/* MAIN */
 
-/* ================= CALORIE CARD ================= */
-
-.calorie-card{
-    text-align:center;
-    padding:22px 16px 18px;
-}
-
-.ring-wrap{
-    position:relative;
-    width:190px;
-    height:190px;
-    margin:0 auto 15px;
-}
-
-.ring{
-    width:100%;
-    height:100%;
-    transform:rotate(-90deg);
-}
-
-.ring-bg{
-    fill:none;
-    stroke:var(--tg-theme-bg-color,#e9ebef);
-    stroke-width:15;
-}
-
-.ring-progress{
-    fill:none;
-    stroke:var(--tg-theme-button-color,#2481cc);
-    stroke-width:15;
-    stroke-linecap:round;
-    stroke-dasharray:502.65;
-    stroke-dashoffset:502.65;
-    transition:.4s ease;
-}
-
-.ring-center{
-    position:absolute;
-    inset:0;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-}
-
-.ring-left{
-    font-size:34px;
-    font-weight:800;
-    line-height:1;
-}
-
-.ring-label{
-    margin-top:6px;
-    font-size:13px;
-    color:var(--tg-theme-hint-color,#777);
-}
-
-.calorie-bottom{
-    display:flex;
-    justify-content:center;
-    gap:18px;
-    color:var(--tg-theme-hint-color,#777);
-    font-size:13px;
-}
-
-/* ================= MACROS ================= */
-
-.macros-grid{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:8px;
-}
-
-.macro-card{
-    background:var(--tg-theme-bg-color,#f4f5f7);
-    border-radius:16px;
-    padding:12px 7px;
+.main-summary{
     text-align:center;
 }
 
-.macro-ring{
-    width:70px;
-    height:70px;
-    margin:0 auto 7px;
-    position:relative;
-}
-
-.macro-ring svg{
-    width:100%;
-    height:100%;
-    transform:rotate(-90deg);
-}
-
-.macro-bg{
-    fill:none;
-    stroke:rgba(128,128,128,.15);
-    stroke-width:7;
-}
-
-.macro-progress{
-    fill:none;
-    stroke:var(--tg-theme-button-color,#2481cc);
-    stroke-width:7;
-    stroke-linecap:round;
-    stroke-dasharray:188.5;
-    stroke-dashoffset:188.5;
-    transition:.4s;
-}
-
-.macro-center{
-    position:absolute;
-    inset:0;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    font-weight:750;
-    font-size:14px;
-}
-
-.macro-name{
-    font-size:13px;
+.today-label{
     color:var(--tg-theme-hint-color,#777);
+    font-size:13px;
 }
 
-.macro-eaten{
-    font-size:12px;
+.calories{
+    font-size:42px;
+    font-weight:850;
     margin-top:3px;
 }
 
-/* ================= MEALS ================= */
+.calories span{
+    font-size:15px;
+    font-weight:500;
+}
 
-.meal-card{
-    background:var(--tg-theme-secondary-bg-color,#fff);
-    border-radius:18px;
-    padding:15px;
-    margin-bottom:10px;
+.progress{
+    height:10px;
+    background:var(--tg-theme-bg-color,#eee);
+    border-radius:20px;
+    overflow:hidden;
+    margin-top:14px;
+}
+
+.progress-bar{
+    height:100%;
+    width:0;
+    background:var(--tg-theme-button-color,#2481cc);
+    border-radius:20px;
+    transition:.3s;
+}
+
+/* MACROS */
+
+.macros{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:9px;
+    margin-top:14px;
+}
+
+.macro{
+    text-align:center;
+    padding:12px 5px;
+    background:var(--tg-theme-bg-color,#f4f5f7);
+    border-radius:15px;
+}
+
+.macro-value{
+    font-size:19px;
+    font-weight:800;
+}
+
+.macro-label{
+    display:block;
+    font-size:12px;
+    color:var(--tg-theme-hint-color,#777);
+    margin-top:3px;
+}
+
+/* MEALS */
+
+.section-title{
+    font-size:19px;
+    font-weight:750;
+    margin:0 0 12px;
+}
+
+.meal{
+    border-radius:15px;
+    background:var(--tg-theme-bg-color,#f4f5f7);
+    padding:13px;
+    margin-bottom:9px;
+}
+
+.meal:last-child{
+    margin-bottom:0;
 }
 
 .meal-header{
     display:flex;
     justify-content:space-between;
     align-items:center;
-    margin-bottom:10px;
 }
 
-.meal-title{
-    font-size:16px;
-    font-weight:750;
+.meal-name{
+    font-weight:700;
 }
 
 .meal-cal{
-    font-size:13px;
-    color:var(--tg-theme-hint-color,#777);
-}
-
-.meal-empty{
     color:var(--tg-theme-hint-color,#777);
     font-size:13px;
-    padding:4px 0;
 }
 
-.meal-food{
-    padding:9px 0;
-    border-top:1px solid rgba(128,128,128,.14);
+.meal-items{
+    margin-top:8px;
 }
 
-.food-main{
+.meal-item{
     display:flex;
-    align-items:center;
     justify-content:space-between;
-    gap:10px;
-}
-
-.food-name{
-    font-size:14px;
-    font-weight:650;
-}
-
-.food-details{
-    color:var(--tg-theme-hint-color,#777);
-    font-size:12px;
-    margin-top:3px;
-}
-
-.food-delete{
-    border:0;
-    background:transparent;
-    color:#e05252;
-    font-size:18px;
-    padding:5px;
-}
-
-/* ================= ADD BUTTON ================= */
-
-.big-add{
-    width:100%;
-    border:0;
-    border-radius:16px;
-    padding:15px;
-    background:var(--tg-theme-button-color,#2481cc);
-    color:var(--tg-theme-button-text-color,#fff);
-    font-weight:750;
-    font-size:16px;
-    margin-bottom:14px;
-}
-
-/* ================= SEARCH ================= */
-
-.search-box{
-    position:relative;
-    margin-bottom:12px;
-}
-
-.search-box input{
-    width:100%;
-    border:0;
-    outline:0;
-    border-radius:14px;
-    padding:13px 14px;
-    background:var(--tg-theme-bg-color,#f4f5f7);
-    color:var(--tg-theme-text-color,#111);
-}
-
-.categories{
-    display:flex;
-    gap:7px;
-    overflow-x:auto;
-    padding-bottom:4px;
-    margin-bottom:12px;
-    scrollbar-width:none;
-}
-
-.categories::-webkit-scrollbar{
-    display:none;
-}
-
-.cat{
-    flex-shrink:0;
-    border:0;
-    border-radius:20px;
-    padding:8px 12px;
-    background:var(--tg-theme-bg-color,#f4f5f7);
-    color:var(--tg-theme-text-color,#111);
+    gap:8px;
     font-size:13px;
+    padding:3px 0;
 }
 
-.cat.active{
-    background:var(--tg-theme-button-color,#2481cc);
-    color:var(--tg-theme-button-text-color,#fff);
+.meal-item-name{
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
 }
 
-.product{
-    padding:13px 0;
-    border-bottom:1px solid rgba(128,128,128,.14);
-}
-
-.product:last-child{
-    border-bottom:0;
-}
-
-.product-name{
-    font-weight:700;
-    font-size:15px;
-}
-
-.product-info{
+.meal-item-cal{
     color:var(--tg-theme-hint-color,#777);
-    font-size:12px;
-    margin-top:4px;
+    white-space:nowrap;
 }
 
-.product-actions{
-    display:flex;
-    align-items:center;
-    gap:7px;
-}
-
-.icon-btn{
-    border:0;
-    background:transparent;
-    padding:6px;
-    font-size:20px;
-}
-
-/* ================= HISTORY ================= */
-
-.history-item{
-    padding:14px 0;
-    border-bottom:1px solid rgba(128,128,128,.14);
-}
-
-.history-item:last-child{
-    border-bottom:0;
-}
-
-.history-date{
-    font-weight:750;
-}
-
-.history-info{
-    margin-top:5px;
-    color:var(--tg-theme-hint-color,#777);
-    font-size:13px;
-}
-
-/* ================= PROFILE ================= */
-
-label{
-    display:block;
-    color:var(--tg-theme-hint-color,#777);
-    font-size:13px;
-    margin:12px 0 6px;
-}
-
-input,
-select{
-    width:100%;
-    border:0;
-    outline:none;
-    border-radius:13px;
-    padding:13px;
-    background:var(--tg-theme-bg-color,#f4f5f7);
-    color:var(--tg-theme-text-color,#111);
-}
+/* BUTTONS */
 
 .primary-btn{
     width:100%;
     border:0;
-    border-radius:14px;
-    padding:14px;
-    margin-top:14px;
+    border-radius:15px;
+    padding:15px;
+    margin-top:12px;
     background:var(--tg-theme-button-color,#2481cc);
     color:var(--tg-theme-button-text-color,#fff);
+    font-size:16px;
     font-weight:750;
 }
 
@@ -441,133 +255,192 @@ select{
     margin-top:10px;
     background:transparent;
     color:var(--tg-theme-link-color,#2481cc);
+    font-size:15px;
+    font-weight:650;
 }
 
-.danger-btn{
+/* PRODUCTS */
+
+.search{
     width:100%;
     border:0;
+    outline:0;
     border-radius:14px;
-    padding:13px;
-    margin-top:10px;
-    background:transparent;
-    color:#e05252;
+    padding:13px 14px;
+    background:var(--tg-theme-bg-color,#f3f4f6);
+    color:var(--tg-theme-text-color,#111);
+    font-size:16px;
+    margin-bottom:10px;
 }
 
-/* ================= MODAL ================= */
-
-.modal{
-    position:fixed;
-    inset:0;
-    background:rgba(0,0,0,.45);
-    z-index:100;
+.categories{
     display:flex;
-    align-items:flex-end;
+    gap:7px;
+    overflow-x:auto;
+    scrollbar-width:none;
+    padding-bottom:4px;
 }
 
-.modal.hidden{
+.categories::-webkit-scrollbar{
     display:none;
 }
 
-.modal-box{
-    width:100%;
-    max-width:540px;
-    margin:auto;
-    background:var(--tg-theme-bg-color,#fff);
-    border-radius:24px 24px 0 0;
-    padding:20px;
-    max-height:90vh;
-    overflow-y:auto;
-}
-
-.modal-title{
-    font-size:20px;
-    font-weight:800;
-    margin:0;
-}
-
-.modal-close{
+.category{
+    flex:0 0 auto;
     border:0;
-    background:transparent;
-    color:var(--tg-theme-link-color,#2481cc);
-    font-size:14px;
-}
-
-.selected-product{
-    background:var(--tg-theme-bg-color,#f4f5f7);
-    border-radius:14px;
-    padding:12px;
-    margin-top:10px;
-}
-
-.quick-grams{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:7px;
-    margin-top:8px;
-}
-
-.quick-grams button{
-    border:0;
-    border-radius:11px;
-    padding:10px 5px;
-    background:var(--tg-theme-bg-color,#f4f5f7);
+    border-radius:20px;
+    padding:8px 12px;
+    background:var(--tg-theme-bg-color,#f3f4f6);
     color:var(--tg-theme-text-color,#111);
-}
-
-.preview{
-    background:var(--tg-theme-bg-color,#f4f5f7);
-    border-radius:13px;
-    padding:12px;
-    margin-top:10px;
-    text-align:center;
     font-size:13px;
 }
 
-/* ================= BOTTOM NAV ================= */
-
-.bottom-nav{
-    position:fixed;
-    bottom:0;
-    left:0;
-    right:0;
-    z-index:50;
-    max-width:540px;
-    margin:auto;
-    padding:7px 8px calc(7px + env(safe-area-inset-bottom));
-    background:var(--tg-theme-secondary-bg-color,#fff);
-    border-top:1px solid rgba(128,128,128,.12);
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
+.category.active{
+    background:var(--tg-theme-button-color,#2481cc);
+    color:var(--tg-theme-button-text-color,#fff);
 }
 
-.nav-btn{
-    border:0;
-    background:transparent;
-    color:var(--tg-theme-hint-color,#777);
-    padding:7px 2px;
-    font-size:11px;
+.product{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    padding:12px 0;
+    border-bottom:1px solid rgba(128,128,128,.15);
 }
 
-.nav-icon{
-    display:block;
-    font-size:21px;
-    margin-bottom:2px;
+.product:last-child{
+    border-bottom:0;
 }
 
-.nav-btn.active{
-    color:var(--tg-theme-button-color,#2481cc);
+.product-main{
+    flex:1;
+    min-width:0;
+}
+
+.product-name{
     font-weight:700;
 }
 
-/* ================= UTIL ================= */
-
-.hidden{
-    display:none!important;
+.product-info{
+    margin-top:3px;
+    font-size:12px;
+    color:var(--tg-theme-hint-color,#777);
 }
 
-.hint{
+.star{
+    width:38px;
+    height:38px;
+    padding:0;
+    border:0;
+    border-radius:12px;
+    background:transparent;
+    font-size:22px;
+}
+
+.star.active{
+    background:rgba(255,193,7,.12);
+}
+
+.product-add{
+    width:auto;
+    margin:0;
+    padding:8px 11px;
+    font-size:13px;
+}
+
+/* DIARY */
+
+.diary-item{
+    padding:13px 0;
+    border-bottom:1px solid rgba(128,128,128,.15);
+}
+
+.diary-item:last-child{
+    border-bottom:0;
+}
+
+.diary-top{
+    display:flex;
+    justify-content:space-between;
+    gap:10px;
+}
+
+.diary-name{
+    font-weight:700;
+}
+
+.diary-cal{
+    white-space:nowrap;
     color:var(--tg-theme-hint-color,#777);
     font-size:13px;
+}
+
+.diary-info{
+    color:var(--tg-theme-hint-color,#777);
+    font-size:12px;
+    margin-top:4px;
+}
+
+.delete-btn{
+    border:0;
+    background:transparent;
+    color:#e05252;
+    padding:5px 0;
+    margin-top:5px;
+    font-size:12px;
+}
+
+/* HISTORY */
+
+.history-day{
+    background:var(--tg-theme-bg-color,#f3f4f6);
+    border-radius:16px;
+    padding:14px;
+    margin-bottom:9px;
+    cursor:pointer;
+}
+
+.history-day-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.history-date{
+    font-weight:750;
+}
+
+.history-cal{
+    font-size:13px;
+    color:var(--tg-theme-hint-color,#777);
+}
+
+.history-macros{
+    display:flex;
+    gap:15px;
+    margin-top:7px;
+    font-size:12px;
+    color:var(--tg-theme-hint-color,#777);
+}
+
+/* PROFILE */
+
+label{
+    display:block;
+    font-size:13px;
+    color:var(--tg-theme-hint-color,#777);
+    margin:12px 0 6px;
+}
+
+input,select{
+    width:100%;
+    border:0;
+    outline:0;
+    border-radius:13px;
+    padding:13px;
+    font-size:16px;
+    background:var(--tg-theme-bg-color,#f3f4f7);
+    color:var(--tg-theme-text-color,#111);
 }
 
 .error{
@@ -576,883 +449,747 @@ select{
     margin-top:8px;
 }
 
+/* MODAL */
+
+.modal{
+    position:fixed;
+    inset:0;
+    z-index:100;
+    background:rgba(0,0,0,.45);
+    display:flex;
+    align-items:flex-end;
+}
+
+.modal-box{
+    width:100%;
+    max-width:540px;
+    margin:auto;
+    background:var(--tg-theme-bg-color,#fff);
+    border-radius:24px 24px 0 0;
+    padding:20px 16px calc(20px + env(safe-area-inset-bottom));
+    max-height:90vh;
+    overflow-y:auto;
+}
+
+.modal-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.close{
+    border:0;
+    background:transparent;
+    color:var(--tg-theme-link-color,#2481cc);
+    font-size:14px;
+}
+
+/* ADD FOOD */
+
+.selected-product{
+    margin-top:12px;
+    padding:13px;
+    border-radius:14px;
+    background:var(--tg-theme-bg-color,#f3f4f7);
+}
+
+.grams-buttons{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:7px;
+    margin-bottom:8px;
+}
+
+.grams-btn{
+    border:0;
+    border-radius:11px;
+    padding:10px 4px;
+    background:var(--tg-theme-bg-color,#f3f4f7);
+    color:var(--tg-theme-text-color,#111);
+}
+
+.preview{
+    margin-top:10px;
+    padding:12px;
+    border-radius:13px;
+    background:var(--tg-theme-bg-color,#f3f4f7);
+    text-align:center;
+    font-size:14px;
+}
+
 .empty{
     text-align:center;
-    padding:25px 10px;
     color:var(--tg-theme-hint-color,#777);
-}
-
-@media(max-width:360px){
-    .app{
-        padding-left:10px;
-        padding-right:10px;
-    }
-
-    .header h1{
-        font-size:25px;
-    }
-
-    .ring-wrap{
-        width:165px;
-        height:165px;
-    }
-
-    .ring-left{
-        font-size:30px;
-    }
+    padding:20px 5px;
+    font-size:14px;
 }
 </style>
+
 </head>
 
 <body>
 
 <div class="app">
 
-    <!-- ================= HOME ================= -->
+<header class="header">
+    <h1>КБЖУ Tracker 🥗</h1>
+    <p>Твой дневник питания</p>
+</header>
 
-    <div class="page active" id="page-home">
+<!-- ================= MAIN ================= -->
 
-        <div class="header">
-            <h1>КБЖУ Tracker 🥗</h1>
-            <p id="homeDate">Сегодня</p>
-        </div>
+<section id="page-home">
 
-        <div class="card calorie-card">
+```
+<div class="card main-summary">
 
-            <div class="ring-wrap">
+    <div class="today-label">Сегодня осталось</div>
 
-                <svg class="ring" viewBox="0 0 180 180">
-
-                    <circle
-                        class="ring-bg"
-                        cx="90"
-                        cy="90"
-                        r="80"
-                    />
-
-                    <circle
-                        class="ring-progress"
-                        id="calorieRing"
-                        cx="90"
-                        cy="90"
-                        r="80"
-                    />
-
-                </svg>
-
-                <div class="ring-center">
-
-                    <div class="ring-left" id="leftCalories">
-                        0
-                    </div>
-
-                    <div class="ring-label">
-                        осталось ккал
-                    </div>
-
-                </div>
-
-            </div>
-
-            <div class="calorie-bottom">
-
-                <span>
-                    Съедено:
-                    <b id="eatenCalories">0</b>
-                </span>
-
-                <span>
-                    Цель:
-                    <b id="targetCalories">0</b>
-                </span>
-
-            </div>
-
-        </div>
-
-
-        <!-- MACROS -->
-
-        <div class="card">
-
-            <div class="card-title">
-                БЖУ
-            </div>
-
-            <div class="macros-grid">
-
-                <div class="macro-card">
-
-                    <div class="macro-ring">
-
-                        <svg viewBox="0 0 70 70">
-
-                            <circle
-                                class="macro-bg"
-                                cx="35"
-                                cy="35"
-                                r="30"
-                            />
-
-                            <circle
-                                class="macro-progress"
-                                id="proteinRing"
-                                cx="35"
-                                cy="35"
-                                r="30"
-                            />
-
-                        </svg>
-
-                        <div class="macro-center">
-                            <span id="proteinPercent">0%</span>
-                        </div>
-
-                    </div>
-
-                    <div class="macro-name">
-                        Белки
-                    </div>
-
-                    <div class="macro-eaten">
-                        <b id="eatenProtein">0</b> /
-                        <span id="targetProtein">0</span> г
-                    </div>
-
-                </div>
-
-
-                <div class="macro-card">
-
-                    <div class="macro-ring">
-
-                        <svg viewBox="0 0 70 70">
-
-                            <circle
-                                class="macro-bg"
-                                cx="35"
-                                cy="35"
-                                r="30"
-                            />
-
-                            <circle
-                                class="macro-progress"
-                                id="fatRing"
-                                cx="35"
-                                cy="35"
-                                r="30"
-                            />
-
-                        </svg>
-
-                        <div class="macro-center">
-                            <span id="fatPercent">0%</span>
-                        </div>
-
-                    </div>
-
-                    <div class="macro-name">
-                        Жиры
-                    </div>
-
-                    <div class="macro-eaten">
-                        <b id="eatenFat">0</b> /
-                        <span id="targetFat">0</span> г
-                    </div>
-
-                </div>
-
-
-                <div class="macro-card">
-
-                    <div class="macro-ring">
-
-                        <svg viewBox="0 0 70 70">
-
-                            <circle
-                                class="macro-bg"
-                                cx="35"
-                                cy="35"
-                                r="30"
-                            />
-
-                            <circle
-                                class="macro-progress"
-                                id="carbRing"
-                                cx="35"
-                                cy="35"
-                                r="30"
-                            />
-
-                        </svg>
-
-                        <div class="macro-center">
-                            <span id="carbPercent">0%</span>
-                        </div>
-
-                    </div>
-
-                    <div class="macro-name">
-                        Углеводы
-                    </div>
-
-                    <div class="macro-eaten">
-                        <b id="eatenCarbs">0</b> /
-                        <span id="targetCarbs">0</span> г
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <!-- QUICK ADD -->
-
-        <button class="big-add" id="openQuickAdd">
-            ＋ Добавить еду
-        </button>
-
-
-        <!-- MEALS -->
-
-        <div class="card">
-
-            <div class="card-title">
-                Приёмы пищи
-            </div>
-
-            <div id="homeMeals"></div>
-
-        </div>
-
+    <div class="calories">
+        <span id="leftCal">0</span>
+        <span>ккал</span>
     </div>
 
-
-    <!-- ================= DIARY ================= -->
-
-    <div class="page" id="page-diary">
-
-        <div class="header">
-
-            <h1>Дневник 🍽️</h1>
-
-            <p id="diaryDate">
-                Сегодня
-            </p>
-
-        </div>
-
-        <div id="diaryContent"></div>
-
+    <div class="progress">
+        <div class="progress-bar" id="calBar"></div>
     </div>
 
+    <div class="macros">
 
-    <!-- ================= PRODUCTS ================= -->
-
-    <div class="page" id="page-products">
-
-        <div class="header">
-
-            <h1>Продукты 🥑</h1>
-
-            <p>
-                Найди продукт и добавь его в дневник
-            </p>
-
+        <div class="macro">
+            <div class="macro-value" id="leftP">0</div>
+            <span class="macro-label">Белки, г</span>
         </div>
 
-
-        <div class="card">
-
-            <div class="search-box">
-
-                <input
-                    id="productSearch"
-                    type="search"
-                    placeholder="🔍  Поиск продукта..."
-                >
-
-            </div>
-
-            <div
-                class="categories"
-                id="productCategories"
-            ></div>
-
-            <div id="productsList"></div>
-
+        <div class="macro">
+            <div class="macro-value" id="leftF">0</div>
+            <span class="macro-label">Жиры, г</span>
         </div>
 
-    </div>
-
-
-    <!-- ================= PROFILE ================= -->
-
-    <div class="page" id="page-profile">
-
-        <div class="header">
-
-            <h1>Профиль ⚙️</h1>
-
-            <p>
-                Настрой свои цели
-            </p>
-
-        </div>
-
-
-        <div class="card">
-
-            <div class="card-title">
-                Параметры
-            </div>
-
-            <label>
-                Пол
-            </label>
-
-            <select id="profileGender">
-
-                <option value="male">
-                    Мужчина
-                </option>
-
-                <option value="female">
-                    Женщина
-                </option>
-
-            </select>
-
-
-            <label>
-                Возраст
-            </label>
-
-            <input
-                id="profileAge"
-                type="number"
-                min="14"
-                max="100"
-            >
-
-
-            <label>
-                Рост, см
-            </label>
-
-            <input
-                id="profileHeight"
-                type="number"
-                min="120"
-                max="230"
-            >
-
-
-            <label>
-                Вес, кг
-            </label>
-
-            <input
-                id="profileWeight"
-                type="number"
-                min="30"
-                max="250"
-                step="0.1"
-            >
-
-
-            <label>
-                Активность
-            </label>
-
-            <select id="profileActivity">
-
-                <option value="1.2">
-                    Минимальная
-                </option>
-
-                <option value="1.375">
-                    Лёгкая — 1–3 тренировки
-                </option>
-
-                <option value="1.55">
-                    Средняя — 3–5 тренировок
-                </option>
-
-                <option value="1.725">
-                    Высокая — 6–7 тренировок
-                </option>
-
-            </select>
-
-
-            <label>
-                Цель
-            </label>
-
-            <select id="profileGoal">
-
-                <option value="loss">
-                    Похудение
-                </option>
-
-                <option value="maintain">
-                    Поддержание
-                </option>
-
-                <option value="gain">
-                    Набор массы
-                </option>
-
-            </select>
-
-
-            <div
-                class="error"
-                id="profileError"
-            ></div>
-
-
-            <button
-                class="primary-btn"
-                id="saveProfile"
-            >
-                Сохранить профиль
-            </button>
-
-        </div>
-
-
-        <div class="card">
-
-            <div class="card-title">
-                Данные
-            </div>
-
-            <button
-                class="secondary-btn"
-                id="showHistory"
-            >
-                📅 История питания
-            </button>
-
-            <button
-                class="danger-btn"
-                id="clearAllData"
-            >
-                🗑️ Сбросить все данные
-            </button>
-
+        <div class="macro">
+            <div class="macro-value" id="leftC">0</div>
+            <span class="macro-label">Углеводы, г</span>
         </div>
 
     </div>
 
 </div>
 
+<div class="card">
+
+    <h2 class="section-title">Сегодня 🍽️</h2>
+
+    <div id="homeMeals"></div>
+
+    <button class="primary-btn" id="quickAdd">
+        ＋ Добавить еду
+    </button>
+
+</div>
+```
+
+</section>
+
+<!-- ================= DIARY ================= -->
+
+<section id="page-diary" class="hidden">
+
+```
+<div class="card">
+
+    <div style="display:flex;justify-content:space-between;align-items:center">
+        <h2 class="section-title" style="margin:0">
+            Дневник
+        </h2>
+
+        <span class="today-label" id="eatenCal">
+            0 ккал
+        </span>
+    </div>
+
+    <div id="diaryList"></div>
+
+    <button class="primary-btn" id="diaryAdd">
+        ＋ Добавить еду
+    </button>
+
+</div>
+```
+
+</section>
+
+<!-- ================= PRODUCTS ================= -->
+
+<section id="page-products" class="hidden">
+
+```
+<div class="card">
+
+    <h2 class="section-title">
+        Продукты 🥗
+    </h2>
+
+    <input
+        class="search"
+        id="search"
+        type="search"
+        placeholder="🔍 Найти продукт..."
+    >
+
+    <div class="categories" id="categories"></div>
+
+    <div style="display:flex;align-items:center;gap:8px;margin-top:12px">
+
+        <button
+            class="category"
+            id="favoriteFilter"
+        >
+            ⭐ Избранные
+        </button>
+
+    </div>
+
+    <div id="productList"></div>
+
+    <button
+        class="secondary-btn"
+        id="newProduct"
+    >
+        ＋ Создать свой продукт
+    </button>
+
+</div>
+```
+
+</section>
+
+<!-- ================= HISTORY ================= -->
+
+<section id="page-history" class="hidden">
+
+```
+<div class="card">
+
+    <h2 class="section-title">
+        История питания 🕐
+    </h2>
+
+    <div id="historyList"></div>
+
+</div>
+```
+
+</section>
+
+<!-- ================= PROFILE ================= -->
+
+<section id="page-profile" class="hidden">
+
+```
+<div class="card">
+
+    <h2 class="section-title">
+        Профиль ⚙️
+    </h2>
+
+    <label>Пол</label>
+
+    <select id="gender">
+        <option value="male">Мужчина</option>
+        <option value="female">Женщина</option>
+    </select>
+
+    <label>Возраст</label>
+    <input id="age" type="number" min="14" max="100">
+
+    <label>Рост, см</label>
+    <input id="height" type="number" min="120" max="230">
+
+    <label>Вес, кг</label>
+    <input id="weight" type="number" min="30" max="250" step=".1">
+
+    <label>Активность</label>
+
+    <select id="activity">
+
+        <option value="1.2">
+            Минимальная
+        </option>
+
+        <option value="1.375">
+            Лёгкая — 1–3 тренировки
+        </option>
+
+        <option value="1.55">
+            Средняя — 3–5 тренировок
+        </option>
+
+        <option value="1.725">
+            Высокая — 6–7 тренировок
+        </option>
+
+    </select>
+
+    <label>Цель</label>
+
+    <select id="goal">
+
+        <option value="loss">
+            Похудение
+        </option>
+
+        <option value="maintain">
+            Поддержание
+        </option>
+
+        <option value="gain">
+            Набор массы
+        </option>
+
+    </select>
+
+    <div
+        class="error"
+        id="profileError"
+    ></div>
+
+    <button
+        class="primary-btn"
+        id="saveProfile"
+    >
+        Сохранить профиль
+    </button>
+
+</div>
+```
+
+</section>
+
+</div>
 
 <!-- ================= BOTTOM NAV ================= -->
 
-<nav class="bottom-nav">
+<nav class="tabs">
 
-    <button
-        class="nav-btn active"
-        data-page="home"
-    >
-        <span class="nav-icon">🏠</span>
-        Главная
-    </button>
+```
+<button class="tab active" data-page="home">
+    <span class="tab-icon">🏠</span>
+    Главная
+</button>
 
-    <button
-        class="nav-btn"
-        data-page="diary"
-    >
-        <span class="nav-icon">📖</span>
-        Дневник
-    </button>
+<button class="tab" data-page="diary">
+    <span class="tab-icon">📖</span>
+    Дневник
+</button>
 
-    <button
-        class="nav-btn"
-        data-page="products"
-    >
-        <span class="nav-icon">🥑</span>
-        Продукты
-    </button>
+<button class="tab" data-page="products">
+    <span class="tab-icon">🥗</span>
+    Продукты
+</button>
 
-    <button
-        class="nav-btn"
-        data-page="profile"
-    >
-        <span class="nav-icon">⚙️</span>
-        Профиль
-    </button>
+<button class="tab" data-page="history">
+    <span class="tab-icon">🕐</span>
+    История
+</button>
+
+<button class="tab" data-page="profile">
+    <span class="tab-icon">⚙️</span>
+    Профиль
+</button>
+```
 
 </nav>
 
-
 <!-- ================= ADD FOOD MODAL ================= -->
 
-<div
-    class="modal hidden"
-    id="foodModal"
->
+<div class="modal hidden" id="addModal">
 
-    <div class="modal-box">
+```
+<div class="modal-box">
 
-        <div class="row">
+    <div class="modal-header">
 
-            <h2 class="modal-title">
-                Добавить еду
-            </h2>
+        <h2 style="margin:0">
+            Добавить еду
+        </h2>
 
-            <button
-                class="modal-close"
-                id="closeFoodModal"
-            >
-                Закрыть
-            </button>
+        <button
+            class="close"
+            id="closeAdd"
+        >
+            Закрыть
+        </button>
+
+    </div>
+
+    <label>Приём пищи</label>
+
+    <select id="meal">
+
+        <option>Завтрак</option>
+        <option>Обед</option>
+        <option>Ужин</option>
+        <option>Перекус</option>
+
+    </select>
+
+    <label>Поиск продукта</label>
+
+    <input
+        class="search"
+        id="addSearch"
+        type="search"
+        placeholder="Например, курица"
+    >
+
+    <div id="addProductList"></div>
+
+    <div
+        id="selectedBlock"
+        class="hidden"
+    >
+
+        <div class="selected-product">
+
+            <b id="selectedName"></b>
+
+            <div
+                class="product-info"
+                id="selectedInfo"
+            ></div>
 
         </div>
 
-
         <label>
-            Приём пищи
+            Количество, г
         </label>
 
-        <select id="modalMeal">
+        <div class="grams-buttons">
 
-            <option>
-                Завтрак
-            </option>
+            <button class="grams-btn" data-g="50">
+                50
+            </button>
 
-            <option>
-                Обед
-            </option>
+            <button class="grams-btn" data-g="100">
+                100
+            </button>
 
-            <option>
-                Ужин
-            </option>
+            <button class="grams-btn" data-g="150">
+                150
+            </button>
 
-            <option>
-                Перекус
-            </option>
+            <button class="grams-btn" data-g="200">
+                200
+            </button>
 
-        </select>
-
-
-        <label>
-            Поиск
-        </label>
+        </div>
 
         <input
-            id="modalSearch"
-            type="search"
-            placeholder="Например, курица"
+            id="grams"
+            type="number"
+            min="1"
+            value="100"
         >
 
-
         <div
-            class="categories"
-            id="modalCategories"
+            class="preview"
+            id="preview"
         ></div>
 
-
-        <div id="modalProducts"></div>
-
-
-        <div
-            id="selectedFoodBlock"
-            class="hidden"
+        <button
+            class="primary-btn"
+            id="addFood"
         >
-
-            <div
-                class="selected-product"
-                id="selectedFoodInfo"
-            ></div>
-
-
-            <label>
-                Количество, г
-            </label>
-
-            <div class="quick-grams">
-
-                <button data-grams="50">
-                    50
-                </button>
-
-                <button data-grams="100">
-                    100
-                </button>
-
-                <button data-grams="150">
-                    150
-                </button>
-
-                <button data-grams="200">
-                    200
-                </button>
-
-            </div>
-
-
-            <input
-                id="modalGrams"
-                type="number"
-                value="100"
-                min="1"
-            >
-
-
-            <div
-                class="preview"
-                id="modalPreview"
-            ></div>
-
-
-            <button
-                class="primary-btn"
-                id="addFoodButton"
-            >
-                Добавить в дневник
-            </button>
-
-        </div>
+            Добавить в дневник
+        </button>
 
     </div>
 
 </div>
+```
 
+</div>
+
+<!-- ================= NEW PRODUCT MODAL ================= -->
+
+<div class="modal hidden" id="productModal">
+
+```
+<div class="modal-box">
+
+    <div class="modal-header">
+
+        <h2 style="margin:0">
+            Новый продукт
+        </h2>
+
+        <button
+            class="close"
+            id="closeProduct"
+        >
+            Закрыть
+        </button>
+
+    </div>
+
+    <p class="today-label">
+        Значения указываются на 100 г продукта.
+    </p>
+
+    <label>Название</label>
+
+    <input
+        id="newName"
+        placeholder="Например, протеин"
+    >
+
+    <label>Категория</label>
+
+    <select id="newCat">
+
+        <option>Мясо</option>
+        <option>Крупы</option>
+        <option>Молочка</option>
+        <option>Фрукты</option>
+        <option>Овощи</option>
+        <option>Другое</option>
+
+    </select>
+
+    <label>Калории, ккал</label>
+
+    <input
+        id="newK"
+        type="number"
+        min="0"
+        step=".1"
+    >
+
+    <label>Белки, г</label>
+
+    <input
+        id="newP"
+        type="number"
+        min="0"
+        step=".1"
+    >
+
+    <label>Жиры, г</label>
+
+    <input
+        id="newF"
+        type="number"
+        min="0"
+        step=".1"
+    >
+
+    <label>Углеводы, г</label>
+
+    <input
+        id="newC"
+        type="number"
+        min="0"
+        step=".1"
+    >
+
+    <div
+        class="error"
+        id="newError"
+    ></div>
+
+    <button
+        class="primary-btn"
+        id="saveProduct"
+    >
+        Сохранить продукт
+    </button>
+
+</div>
+```
+
+</div>
 
 <!-- ================= HISTORY MODAL ================= -->
 
-<div
-    class="modal hidden"
-    id="historyModal"
->
+<div class="modal hidden" id="historyModal">
 
-    <div class="modal-box">
+```
+<div class="modal-box">
 
-        <div class="row">
+    <div class="modal-header">
 
-            <h2 class="modal-title">
-                История
-            </h2>
+        <h2 id="historyTitle" style="margin:0">
+            История
+        </h2>
 
-            <button
-                class="modal-close"
-                id="closeHistory"
-            >
-                Закрыть
-            </button>
-
-        </div>
-
-        <div id="historyList"></div>
+        <button
+            class="close"
+            id="closeHistory"
+        >
+            Закрыть
+        </button>
 
     </div>
 
-</div>
+    <div id="historyDetails"></div>
 
+</div>
+```
+
+</div>
 
 <script>
 
-/* =========================================================
+/* =========================================
    TELEGRAM
-========================================================= */
+========================================= */
 
 const tg = window.Telegram?.WebApp;
 
 if(tg){
     tg.ready();
     tg.expand();
+
+    if(tg.disableVerticalSwipes){
+        tg.disableVerticalSwipes();
+    }
 }
 
 
-/* =========================================================
+/* =========================================
    HELPERS
-========================================================= */
+========================================= */
 
 const $ = id => document.getElementById(id);
 
-const today = new Date()
-    .toISOString()
-    .slice(0,10);
 
-
-/* =========================================================
+/* =========================================
    PRODUCTS
-========================================================= */
+========================================= */
 
 const baseProducts = [
 
-    {
-        id:1,
-        name:"Куриная грудка",
-        cat:"Мясо",
-        kcal:165,
-        p:31,
-        f:3.6,
-        c:0
-    },
+{
+    id:1,
+    name:"Куриная грудка",
+    cat:"Мясо",
+    kcal:165,
+    p:31,
+    f:3.6,
+    c:0
+},
 
-    {
-        id:2,
-        name:"Яйцо куриное",
-        cat:"Молочка",
-        kcal:157,
-        p:13,
-        f:11,
-        c:1.1
-    },
+{
+    id:2,
+    name:"Яйцо куриное",
+    cat:"Молочка",
+    kcal:157,
+    p:13,
+    f:11,
+    c:1.1
+},
 
-    {
-        id:3,
-        name:"Рис варёный",
-        cat:"Крупы",
-        kcal:130,
-        p:2.7,
-        f:.3,
-        c:28
-    },
+{
+    id:3,
+    name:"Рис варёный",
+    cat:"Крупы",
+    kcal:130,
+    p:2.7,
+    f:.3,
+    c:28
+},
 
-    {
-        id:4,
-        name:"Гречка варёная",
-        cat:"Крупы",
-        kcal:110,
-        p:3.6,
-        f:1.1,
-        c:21.6
-    },
+{
+    id:4,
+    name:"Гречка варёная",
+    cat:"Крупы",
+    kcal:110,
+    p:3.6,
+    f:1.1,
+    c:21.6
+},
 
-    {
-        id:5,
-        name:"Овсянка на воде",
-        cat:"Крупы",
-        kcal:68,
-        p:2.4,
-        f:1.4,
-        c:12
-    },
+{
+    id:5,
+    name:"Овсянка на воде",
+    cat:"Крупы",
+    kcal:68,
+    p:2.4,
+    f:1.4,
+    c:12
+},
 
-    {
-        id:6,
-        name:"Творог 5%",
-        cat:"Молочка",
-        kcal:121,
-        p:17.2,
-        f:5,
-        c:1.8
-    },
+{
+    id:6,
+    name:"Творог 5%",
+    cat:"Молочка",
+    kcal:121,
+    p:17.2,
+    f:5,
+    c:1.8
+},
 
-    {
-        id:7,
-        name:"Банан",
-        cat:"Фрукты",
-        kcal:89,
-        p:1.1,
-        f:.3,
-        c:22.8
-    },
+{
+    id:7,
+    name:"Банан",
+    cat:"Фрукты",
+    kcal:89,
+    p:1.1,
+    f:.3,
+    c:22.8
+},
 
-    {
-        id:8,
-        name:"Яблоко",
-        cat:"Фрукты",
-        kcal:52,
-        p:.3,
-        f:.2,
-        c:13.8
-    },
+{
+    id:8,
+    name:"Яблоко",
+    cat:"Фрукты",
+    kcal:52,
+    p:.3,
+    f:.2,
+    c:13.8
+},
 
-    {
-        id:9,
-        name:"Хлеб",
-        cat:"Крупы",
-        kcal:250,
-        p:8,
-        f:3,
-        c:49
-    },
+{
+    id:9,
+    name:"Хлеб",
+    cat:"Крупы",
+    kcal:250,
+    p:8,
+    f:3,
+    c:49
+},
 
-    {
-        id:10,
-        name:"Молоко 2.5%",
-        cat:"Молочка",
-        kcal:52,
-        p:2.8,
-        f:2.5,
-        c:4.7
-    },
+{
+    id:10,
+    name:"Молоко 2.5%",
+    cat:"Молочка",
+    kcal:52,
+    p:2.8,
+    f:2.5,
+    c:4.7
+},
 
-    {
-        id:11,
-        name:"Помидор",
-        cat:"Овощи",
-        kcal:18,
-        p:.9,
-        f:.2,
-        c:3.9
-    },
+{
+    id:11,
+    name:"Помидор",
+    cat:"Овощи",
+    kcal:18,
+    p:.9,
+    f:.2,
+    c:3.9
+},
 
-    {
-        id:12,
-        name:"Огурец",
-        cat:"Овощи",
-        kcal:15,
-        p:.8,
-        f:.1,
-        c:2.5
-    },
-
-    {
-        id:13,
-        name:"Картофель варёный",
-        cat:"Овощи",
-        kcal:82,
-        p:2,
-        f:.4,
-        c:17
-    },
-
-    {
-        id:14,
-        name:"Говядина",
-        cat:"Мясо",
-        kcal:187,
-        p:18.9,
-        f:12.4,
-        c:0
-    },
-
-    {
-        id:15,
-        name:"Макароны варёные",
-        cat:"Крупы",
-        kcal:157,
-        p:5.8,
-        f:.9,
-        c:30.9
-    },
-
-    {
-        id:16,
-        name:"Авокадо",
-        cat:"Фрукты",
-        kcal:160,
-        p:2,
-        f:14.7,
-        c:8.5
-    }
+{
+    id:12,
+    name:"Огурец",
+    cat:"Овощи",
+    kcal:15,
+    p:.8,
+    f:.1,
+    c:2.5
+}
 
 ];
-
-
-/* =========================================================
-   STATE
-========================================================= */
 
 let customProducts =
     JSON.parse(
@@ -1464,66 +1201,90 @@ let products = [
     ...customProducts
 ];
 
+
+/* =========================================
+   PROFILE
+========================================= */
+
 let profile =
     JSON.parse(
         localStorage.getItem("kbjuProfile") || "null"
     );
 
-let diary =
-    JSON.parse(
-        localStorage.getItem("kbjuDiary") || "null"
-    );
 
-let history =
-    JSON.parse(
-        localStorage.getItem("kbjuHistory") || "[]"
-    );
+/* =========================================
+   FAVORITES
+========================================= */
 
 let favorites =
     JSON.parse(
         localStorage.getItem("kbjuFavorites") || "[]"
     );
 
-let selectedProduct = null;
-
-let productCategory = "Все";
-
-let modalCategory = "Все";
+let favoriteOnly = false;
 
 
-/* =========================================================
-   DIARY RESET
-========================================================= */
+/* =========================================
+   TODAY
+========================================= */
+
+function getToday(){
+
+    const d = new Date();
+
+    const year = d.getFullYear();
+    const month = String(d.getMonth()+1).padStart(2,"0");
+    const day = String(d.getDate()).padStart(2,"0");
+
+    return `${year}-${month}-${day}`;
+}
+
+const today = getToday();
+
+
+/* =========================================
+   DIARY
+========================================= */
+
+let diary =
+    JSON.parse(
+        localStorage.getItem("kbjuDiary") || "null"
+    );
 
 if(
     !diary ||
     diary.date !== today
 ){
 
-    if(
-        diary &&
-        diary.items &&
-        diary.items.length
-    ){
-
-        history.push(diary);
-
-        localStorage.setItem(
-            "kbjuHistory",
-            JSON.stringify(history)
-        );
-    }
-
     diary = {
         date:today,
         items:[]
     };
+
 }
 
 
-/* =========================================================
+/* =========================================
+   HISTORY
+========================================= */
+
+let history =
+    JSON.parse(
+        localStorage.getItem("kbjuHistory") || "{}"
+    );
+
+
+/* =========================================
+   STATE
+========================================= */
+
+let selected = null;
+let category = "Все";
+
+
+/* =========================================
    SAVE
-========================================================= */
+========================================= */
 
 function save(){
 
@@ -1538,8 +1299,8 @@ function save(){
     );
 
     localStorage.setItem(
-        "kbjuHistory",
-        JSON.stringify(history)
+        "kbjuCustomProducts",
+        JSON.stringify(customProducts)
     );
 
     localStorage.setItem(
@@ -1548,25 +1309,44 @@ function save(){
     );
 
     localStorage.setItem(
-        "kbjuCustomProducts",
-        JSON.stringify(customProducts)
+        "kbjuHistory",
+        JSON.stringify(history)
     );
+
 }
 
 
-/* =========================================================
-   TARGET CALCULATION
-========================================================= */
+/* =========================================
+   SAVE TODAY TO HISTORY
+========================================= */
 
-function calculateTargets(){
+function saveTodayToHistory(){
+
+    if(!diary) return;
+
+    history[diary.date] = {
+        date:diary.date,
+        items:diary.items
+    };
+
+}
+
+
+/* =========================================
+   TARGETS
+========================================= */
+
+function calcTargets(){
 
     if(!profile){
+
         return {
             cal:0,
             p:0,
             f:0,
             c:0
         };
+
     }
 
     const bmr =
@@ -1588,12 +1368,6 @@ function calculateTargets(){
 
     cal = Math.round(cal);
 
-    /*
-       Белок = 2 г на кг
-       Жиры = 0.8 г на кг
-       Остаток калорий = углеводы
-    */
-
     const p =
         Math.round(profile.weight * 2);
 
@@ -1604,7 +1378,7 @@ function calculateTargets(){
         Math.max(
             0,
             Math.round(
-                (cal - p * 4 - f * 9) / 4
+                (cal - p*4 - f*9) / 4
             )
         );
 
@@ -1614,229 +1388,180 @@ function calculateTargets(){
         f,
         c
     };
+
 }
 
 
-/* =========================================================
+/* =========================================
    TOTALS
-========================================================= */
+========================================= */
 
-function getTotals(){
+function totals(){
 
     return diary.items.reduce(
-        (total,item)=>{
 
-            total.cal += Number(item.cal) || 0;
-            total.p += Number(item.p) || 0;
-            total.f += Number(item.f) || 0;
-            total.c += Number(item.c) || 0;
+        (a,x)=>{
 
-            return total;
+            a.cal += Number(x.cal) || 0;
+            a.p += Number(x.p) || 0;
+            a.f += Number(x.f) || 0;
+            a.c += Number(x.c) || 0;
+
+            return a;
 
         },
+
         {
             cal:0,
             p:0,
             f:0,
             c:0
         }
+
     );
+
 }
 
 
-/* =========================================================
-   RING
-========================================================= */
+/* =========================================
+   TABS
+========================================= */
 
-function setRing(
-    element,
-    percent,
-    circumference
-){
+document.querySelectorAll(".tab").forEach(tab=>{
 
-    percent =
-        Math.max(
-            0,
-            Math.min(
-                100,
-                percent
-            )
-        );
+    tab.onclick = ()=>{
 
-    element.style.strokeDashoffset =
-        circumference -
-        circumference * percent / 100;
-}
+        const page =
+            tab.dataset.page;
+
+        document
+            .querySelectorAll(".tab")
+            .forEach(x=>
+                x.classList.remove("active")
+            );
+
+        tab.classList.add("active");
+
+        document
+            .querySelectorAll("[id^='page-']")
+            .forEach(section=>
+                section.classList.add("hidden")
+            );
+
+        $("page-"+page)
+            .classList.remove("hidden");
+
+        if(page === "products"){
+            renderProducts();
+        }
+
+        if(page === "history"){
+            renderHistory();
+        }
+
+    };
+
+});
 
 
-/* =========================================================
-   UPDATE HOME
-========================================================= */
+/* =========================================
+   HOME
+========================================= */
 
 function renderHome(){
 
-    if(!profile){
-        return;
-    }
-
     const target =
-        calculateTargets();
+        calcTargets();
 
     const eaten =
-        getTotals();
+        totals();
 
-
-    /* CALORIES */
-
-    const caloriesLeft =
+    const leftCal =
         Math.max(
             0,
             target.cal - eaten.cal
         );
 
-    $("leftCalories").textContent =
-        Math.round(caloriesLeft);
+    const leftP =
+        Math.max(
+            0,
+            target.p - eaten.p
+        );
 
-    $("eatenCalories").textContent =
-        Math.round(eaten.cal);
+    const leftF =
+        Math.max(
+            0,
+            target.f - eaten.f
+        );
 
-    $("targetCalories").textContent =
-        target.cal;
+    const leftC =
+        Math.max(
+            0,
+            target.c - eaten.c
+        );
 
+    $("leftCal").textContent =
+        Math.round(leftCal);
 
-    const caloriePercent =
-        target.cal
-            ? eaten.cal / target.cal * 100
-            : 0;
+    $("leftP").textContent =
+        Math.round(leftP);
 
-    setRing(
-        $("calorieRing"),
-        caloriePercent,
-        502.65
-    );
+    $("leftF").textContent =
+        Math.round(leftF);
 
+    $("leftC").textContent =
+        Math.round(leftC);
 
-    /* PROTEIN */
+    const percent =
+        target.cal > 0
+        ? eaten.cal / target.cal * 100
+        : 0;
 
-    const proteinPercent =
-        target.p
-            ? eaten.p / target.p * 100
-            : 0;
-
-    $("eatenProtein").textContent =
-        eaten.p.toFixed(1);
-
-    $("targetProtein").textContent =
-        target.p;
-
-    $("proteinPercent").textContent =
-        Math.round(
-            Math.min(100,proteinPercent)
-        ) + "%";
-
-    setRing(
-        $("proteinRing"),
-        proteinPercent,
-        188.5
-    );
+    $("calBar").style.width =
+        Math.min(100,percent)+"%";
 
 
-    /* FAT */
+    const meals = [
+        "Завтрак",
+        "Обед",
+        "Ужин",
+        "Перекус"
+    ];
 
-    const fatPercent =
-        target.f
-            ? eaten.f / target.f * 100
-            : 0;
-
-    $("eatenFat").textContent =
-        eaten.f.toFixed(1);
-
-    $("targetFat").textContent =
-        target.f;
-
-    $("fatPercent").textContent =
-        Math.round(
-            Math.min(100,fatPercent)
-        ) + "%";
-
-    setRing(
-        $("fatRing"),
-        fatPercent,
-        188.5
-    );
-
-
-    /* CARBS */
-
-    const carbPercent =
-        target.c
-            ? eaten.c / target.c * 100
-            : 0;
-
-    $("eatenCarbs").textContent =
-        eaten.c.toFixed(1);
-
-    $("targetCarbs").textContent =
-        target.c;
-
-    $("carbPercent").textContent =
-        Math.round(
-            Math.min(100,carbPercent)
-        ) + "%";
-
-    setRing(
-        $("carbRing"),
-        carbPercent,
-        188.5
-    );
-
-
-    renderHomeMeals();
-}
-
-
-/* =========================================================
-   MEALS
-========================================================= */
-
-const mealNames = [
-    "Завтрак",
-    "Обед",
-    "Ужин",
-    "Перекус"
-];
-
-const mealIcons = {
-    "Завтрак":"🌅",
-    "Обед":"☀️",
-    "Ужин":"🌙",
-    "Перекус":"🍎"
-};
-
-
-function renderHomeMeals(){
 
     $("homeMeals").innerHTML =
-        mealNames.map(meal=>{
+        meals.map(meal=>{
 
             const items =
                 diary.items.filter(
-                    item => item.meal === meal
+                    x=>x.meal === meal
                 );
 
             const calories =
                 items.reduce(
-                    (sum,item)=>sum + item.cal,
+                    (sum,x)=>
+                        sum + Number(x.cal),
                     0
                 );
 
-            let html = `
-                <div class="meal-card">
+            const emoji =
+                meal === "Завтрак"
+                ? "🍳"
+                : meal === "Обед"
+                ? "🍗"
+                : meal === "Ужин"
+                ? "🍽️"
+                : "🍎";
+
+
+            return `
+
+                <div class="meal">
 
                     <div class="meal-header">
 
-                        <div class="meal-title">
-                            ${mealIcons[meal]} ${meal}
+                        <div class="meal-name">
+                            ${emoji} ${meal}
                         </div>
 
                         <div class="meal-cal">
@@ -1844,322 +1569,193 @@ function renderHomeMeals(){
                         </div>
 
                     </div>
-            `;
 
-            if(!items.length){
+                    <div class="meal-items">
 
-                html += `
-                    <div class="meal-empty">
-                        Пока ничего нет
-                    </div>
-                `;
+                        ${
+                            items.length
 
-            }else{
+                            ?
 
-                items.forEach(
-                    (item,index)=>{
+                            items.map(x=>`
 
-                        const realIndex =
-                            diary.items.indexOf(item);
+                                <div class="meal-item">
 
-                        html += `
-                            <div class="meal-food">
+                                    <span class="meal-item-name">
+                                        ${x.name} · ${x.grams} г
+                                    </span>
 
-                                <div class="food-main">
-
-                                    <div>
-
-                                        <div class="food-name">
-                                            ${escapeHtml(item.name)}
-                                        </div>
-
-                                        <div class="food-details">
-                                            ${item.grams} г ·
-                                            ${Math.round(item.cal)} ккал ·
-                                            Б ${item.p.toFixed(1)} ·
-                                            Ж ${item.f.toFixed(1)} ·
-                                            У ${item.c.toFixed(1)}
-                                        </div>
-
-                                    </div>
-
-                                    <button
-                                        class="food-delete"
-                                        onclick="removeFood(${realIndex})"
-                                    >
-                                        ×
-                                    </button>
+                                    <span class="meal-item-cal">
+                                        ${Math.round(x.cal)} ккал
+                                    </span>
 
                                 </div>
 
-                            </div>
-                        `;
-                    }
-                );
+                            `).join("")
 
-            }
+                            :
 
-            html += `
+                            `<div class="today-label">
+                                Пока ничего нет
+                            </div>`
+                        }
+
+                    </div>
+
                 </div>
+
             `;
 
-            return html;
-
         }).join("");
+
 }
 
 
-/* =========================================================
-   DIARY PAGE
-========================================================= */
+/* =========================================
+   DIARY
+========================================= */
 
 function renderDiary(){
 
-    const target =
-        calculateTargets();
-
     const eaten =
-        getTotals();
+        totals();
 
-    let html = `
-
-        <div class="card">
-
-            <div class="row">
-
-                <div>
-                    <b>Сегодня</b>
-
-                    <div class="hint">
-                        ${formatDate(today)}
-                    </div>
-                </div>
-
-                <div style="text-align:right">
-
-                    <b>
-                        ${Math.round(eaten.cal)}
-                    </b>
-                    /
-                    ${target.cal}
-
-                    <div class="hint">
-                        ккал
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    `;
+    $("eatenCal").textContent =
+        Math.round(eaten.cal)+" ккал";
 
 
-    mealNames.forEach(meal=>{
+    if(!diary.items.length){
 
-        const items =
-            diary.items.filter(
-                item=>item.meal===meal
-            );
+        $("diaryList").innerHTML =
+            `<div class="empty">
+                Сегодня ещё ничего не добавлено.
+            </div>`;
 
-        const calories =
-            items.reduce(
-                (sum,item)=>sum + item.cal,
-                0
-            );
-
-        html += `
-
-            <div class="meal-card">
-
-                <div class="meal-header">
-
-                    <div class="meal-title">
-                        ${mealIcons[meal]} ${meal}
-                    </div>
-
-                    <div class="meal-cal">
-                        ${Math.round(calories)} ккал
-                    </div>
-
-                </div>
-
-        `;
-
-        if(!items.length){
-
-            html += `
-                <div class="meal-empty">
-                    Пока ничего не добавлено
-                </div>
-            `;
-
-        }else{
-
-            items.forEach(item=>{
-
-                const index =
-                    diary.items.indexOf(item);
-
-                html += `
-
-                    <div class="meal-food">
-
-                        <div class="food-main">
-
-                            <div>
-
-                                <div class="food-name">
-                                    ${escapeHtml(item.name)}
-                                </div>
-
-                                <div class="food-details">
-                                    ${item.grams} г ·
-                                    ${Math.round(item.cal)} ккал ·
-                                    Б ${item.p.toFixed(1)} ·
-                                    Ж ${item.f.toFixed(1)} ·
-                                    У ${item.c.toFixed(1)}
-                                </div>
-
-                            </div>
-
-                            <button
-                                class="food-delete"
-                                onclick="removeFood(${index})"
-                            >
-                                ×
-                            </button>
-
-                        </div>
-
-                    </div>
-
-                `;
-
-            });
-
-        }
-
-        html += `
-            </div>
-        `;
-
-    });
-
-
-    if(diary.items.length){
-
-        html += `
-
-            <button
-                class="danger-btn"
-                onclick="clearDiary()"
-            >
-                🗑️ Очистить сегодняшний дневник
-            </button>
-
-        `;
+        return;
 
     }
 
-    $("diaryContent").innerHTML =
-        html;
+
+    $("diaryList").innerHTML =
+        diary.items.map((x,i)=>`
+
+            <div class="diary-item">
+
+                <div class="diary-top">
+
+                    <div class="diary-name">
+                        ${x.name}
+                    </div>
+
+                    <div class="diary-cal">
+                        ${Math.round(x.cal)} ккал
+                    </div>
+
+                </div>
+
+                <div class="diary-info">
+
+                    ${x.grams} г ·
+                    Б ${Number(x.p).toFixed(1)} ·
+                    Ж ${Number(x.f).toFixed(1)} ·
+                    У ${Number(x.c).toFixed(1)}
+                    · ${x.meal}
+
+                </div>
+
+                <button
+                    class="delete-btn"
+                    onclick="removeFood(${i})"
+                >
+                    Удалить
+                </button>
+
+            </div>
+
+        `).join("");
+
 }
 
 
-/* =========================================================
+/* =========================================
    PRODUCTS CATEGORIES
-========================================================= */
+========================================= */
 
-function getCategories(){
+function renderCategories(){
 
-    return [
+    const cats = [
         "Все",
-        "Избранное",
         ...new Set(
-            products.map(
-                product=>product.cat
-            )
+            products.map(p=>p.cat)
         )
     ];
 
-}
-
-
-function renderProductCategories(){
-
-    const categories =
-        getCategories();
-
-    $("productCategories").innerHTML =
-        categories.map(cat=>`
+    $("categories").innerHTML =
+        cats.map(cat=>`
 
             <button
-                class="cat ${cat === productCategory ? "active":""}"
-                onclick="selectProductCategory('${escapeAttr(cat)}')"
+                class="category ${cat===category ? "active":""}"
+                data-cat="${cat}"
             >
                 ${cat}
             </button>
 
         `).join("");
+
+
+    document
+        .querySelectorAll("[data-cat]")
+        .forEach(btn=>{
+
+            btn.onclick = ()=>{
+
+                category =
+                    btn.dataset.cat;
+
+                renderCategories();
+                renderProducts();
+
+            };
+
+        });
+
 }
 
 
-window.selectProductCategory =
-function(cat){
+/* =========================================
+   PRODUCTS
+========================================= */
 
-    productCategory = cat;
+function renderProducts(){
 
-    renderProductsPage();
+    renderCategories();
 
-};
-
-
-/* =========================================================
-   PRODUCT LIST
-========================================================= */
-
-function renderProductsPage(){
-
-    renderProductCategories();
-
-    const search =
-        $("productSearch")
-            .value
-            .trim()
-            .toLowerCase();
+    const q =
+        $("search").value
+        .trim()
+        .toLowerCase();
 
 
     let list =
         products.filter(product=>{
 
-            const matchesSearch =
+            const categoryOk =
+                category === "Все" ||
+                product.cat === category;
+
+            const searchOk =
                 product.name
                     .toLowerCase()
-                    .includes(search);
+                    .includes(q);
 
-            let matchesCategory = true;
-
-            if(productCategory !== "Все"){
-
-                if(productCategory === "Избранное"){
-
-                    matchesCategory =
-                        favorites.includes(product.id);
-
-                }else{
-
-                    matchesCategory =
-                        product.cat === productCategory;
-
-                }
-
-            }
+            const favoriteOk =
+                !favoriteOnly ||
+                favorites.includes(product.id);
 
             return (
-                matchesSearch &&
-                matchesCategory
+                categoryOk &&
+                searchOk &&
+                favoriteOk
             );
 
         });
@@ -2167,71 +1763,76 @@ function renderProductsPage(){
 
     if(!list.length){
 
-        $("productsList").innerHTML = `
-            <div class="empty">
-                Ничего не найдено
-            </div>
-        `;
+        $("productList").innerHTML =
+            `<div class="empty">
+                ${
+                    favoriteOnly
+                    ? "У тебя пока нет избранных продуктов ⭐"
+                    : "Ничего не найдено."
+                }
+            </div>`;
 
         return;
+
     }
 
 
-    $("productsList").innerHTML =
+    $("productList").innerHTML =
         list.map(product=>{
 
-            const favorite =
+            const fav =
                 favorites.includes(product.id);
 
             return `
 
                 <div class="product">
 
-                    <div class="row">
+                    <button
+                        class="star ${fav ? "active":""}"
+                        onclick="toggleFavorite(${product.id})"
+                    >
+                        ${fav ? "⭐":"☆"}
+                    </button>
 
-                        <div>
+                    <div class="product-main">
 
-                            <div class="product-name">
-                                ${escapeHtml(product.name)}
-                            </div>
-
-                            <div class="product-info">
-                                ${product.kcal} ккал ·
-                                Б ${product.p} ·
-                                Ж ${product.f} ·
-                                У ${product.c}
-                                на 100 г
-                            </div>
-
+                        <div class="product-name">
+                            ${product.name}
                         </div>
 
-                        <div class="product-actions">
+                        <div class="product-info">
 
-                            <button
-                                class="icon-btn"
-                                onclick="toggleFavorite(${product.id})"
-                            >
-                                ${favorite ? "⭐":"☆"}
-                            </button>
+                            ${product.kcal} ккал ·
+                            Б ${product.p} ·
+                            Ж ${product.f} ·
+                            У ${product.c}
+                            на 100 г
 
                         </div>
 
                     </div>
+
+                    <button
+                        class="primary-btn product-add"
+                        onclick="openAddForProduct(${product.id})"
+                    >
+                        +
+                    </button>
 
                 </div>
 
             `;
 
         }).join("");
+
 }
 
 
-/* =========================================================
+/* =========================================
    FAVORITES
-========================================================= */
+========================================= */
 
-window.toggleFavorite =
-function(id){
+window.toggleFavorite = function(id){
 
     if(favorites.includes(id)){
 
@@ -2247,308 +1848,292 @@ function(id){
     }
 
     save();
-
-    renderProductsPage();
-};
-
-
-/* =========================================================
-   QUICK ADD MODAL
-========================================================= */
-
-function openFoodModal(){
-
-    $("foodModal")
-        .classList
-        .remove("hidden");
-
-    selectedProduct = null;
-
-    $("selectedFoodBlock")
-        .classList
-        .add("hidden");
-
-    $("modalSearch").value = "";
-
-    modalCategory = "Все";
-
-    renderModalProducts();
-
-}
-
-
-function closeFoodModal(){
-
-    $("foodModal")
-        .classList
-        .add("hidden");
-
-}
-
-
-function renderModalCategories(){
-
-    const categories =
-        getCategories()
-            .filter(
-                cat=>cat!=="Избранное"
-            );
-
-    $("modalCategories").innerHTML =
-        categories.map(cat=>`
-
-            <button
-                class="cat ${cat === modalCategory ? "active":""}"
-                onclick="selectModalCategory('${escapeAttr(cat)}')"
-            >
-                ${cat}
-            </button>
-
-        `).join("");
-}
-
-
-window.selectModalCategory =
-function(cat){
-
-    modalCategory = cat;
-
-    renderModalProducts();
+    renderProducts();
 
 };
 
 
-function renderModalProducts(){
+$("favoriteFilter").onclick = ()=>{
 
-    renderModalCategories();
+    favoriteOnly =
+        !favoriteOnly;
 
-    const search =
-        $("modalSearch")
+    $("favoriteFilter")
+        .classList.toggle(
+            "active",
+            favoriteOnly
+        );
+
+    renderProducts();
+
+};
+
+
+/* =========================================
+   SEARCH
+========================================= */
+
+$("search").oninput =
+    renderProducts;
+
+
+/* =========================================
+   ADD MODAL
+========================================= */
+
+function openAddModal(){
+
+    $("addModal")
+        .classList.remove("hidden");
+
+    $("addSearch").value = "";
+
+    selected = null;
+
+    $("selectedBlock")
+        .classList.add("hidden");
+
+    renderAddProducts();
+
+}
+
+
+$("quickAdd").onclick =
+    openAddModal;
+
+$("diaryAdd").onclick =
+    openAddModal;
+
+
+$("closeAdd").onclick = ()=>{
+
+    $("addModal")
+        .classList.add("hidden");
+
+};
+
+
+$("addSearch").oninput =
+    renderAddProducts;
+
+
+/* =========================================
+   ADD PRODUCTS LIST
+========================================= */
+
+function renderAddProducts(){
+
+    const q =
+        $("addSearch")
             .value
             .trim()
             .toLowerCase();
 
 
     const list =
-        products.filter(product=>{
-
-            const searchMatch =
-                product.name
-                    .toLowerCase()
-                    .includes(search);
-
-            const categoryMatch =
-                modalCategory === "Все" ||
-                product.cat === modalCategory;
-
-            return (
-                searchMatch &&
-                categoryMatch
-            );
-
-        });
+        products.filter(
+            x=>x.name
+                .toLowerCase()
+                .includes(q)
+        );
 
 
-    if(!list.length){
-
-        $("modalProducts").innerHTML = `
-            <div class="empty">
-                Ничего не найдено
-            </div>
-        `;
-
-        return;
-    }
-
-
-    $("modalProducts").innerHTML =
+    $("addProductList").innerHTML =
         list.map(product=>`
 
             <div
                 class="product"
-                onclick="selectFood(${product.id})"
-                style="cursor:pointer"
+                onclick="selectProduct(${product.id})"
             >
 
-                <div class="product-name">
-                    ${escapeHtml(product.name)}
+                <div class="product-main">
+
+                    <div class="product-name">
+                        ${product.name}
+                    </div>
+
+                    <div class="product-info">
+                        ${product.kcal} ккал ·
+                        Б ${product.p} ·
+                        Ж ${product.f} ·
+                        У ${product.c}
+                    </div>
+
                 </div>
 
-                <div class="product-info">
-                    ${product.kcal} ккал ·
-                    Б ${product.p} ·
-                    Ж ${product.f} ·
-                    У ${product.c}
-                    на 100 г
+                <div>
+                    ${favorites.includes(product.id) ? "⭐":""}
                 </div>
 
             </div>
 
         `).join("");
+
 }
 
 
-window.selectFood =
-function(id){
+/* =========================================
+   SELECT PRODUCT
+========================================= */
 
-    selectedProduct =
+window.selectProduct = function(id){
+
+    selected =
         products.find(
-            product=>product.id===id
+            x=>x.id === id
         );
 
-    if(!selectedProduct){
-        return;
-    }
+    if(!selected) return;
 
-    $("selectedFoodBlock")
-        .classList
-        .remove("hidden");
+    $("selectedBlock")
+        .classList.remove("hidden");
 
+    $("selectedName")
+        .textContent =
+        selected.name;
 
-    $("selectedFoodInfo").innerHTML = `
+    $("selectedInfo")
+        .textContent =
+        `${selected.kcal} ккал · Б ${selected.p} · Ж ${selected.f} · У ${selected.c} на 100 г`;
 
-        <b>
-            ${escapeHtml(selectedProduct.name)}
-        </b>
+    $("grams").value = 100;
 
-        <div class="hint" style="margin-top:4px">
-            ${selectedProduct.kcal} ккал ·
-            Б ${selectedProduct.p} ·
-            Ж ${selectedProduct.f} ·
-            У ${selectedProduct.c}
-            на 100 г
-        </div>
-
-    `;
-
-    $("modalGrams").value = 100;
-
-    updateModalPreview();
+    preview();
 
 };
 
 
-function updateModalPreview(){
+window.openAddForProduct = function(id){
 
-    if(!selectedProduct){
-        return;
-    }
+    openAddModal();
 
-    const grams =
-        Number(
-            $("modalGrams").value
-        ) || 0;
+    setTimeout(()=>{
+
+        selectProduct(id);
+
+    },50);
+
+};
 
 
-    const multiplier =
-        grams / 100;
+/* =========================================
+   PREVIEW
+========================================= */
 
+function preview(){
+
+    if(!selected) return;
+
+    const g =
+        Number($("grams").value) || 0;
 
     const cal =
-        selectedProduct.kcal *
-        multiplier;
+        selected.kcal * g / 100;
 
     const p =
-        selectedProduct.p *
-        multiplier;
+        selected.p * g / 100;
 
     const f =
-        selectedProduct.f *
-        multiplier;
+        selected.f * g / 100;
 
     const c =
-        selectedProduct.c *
-        multiplier;
+        selected.c * g / 100;
 
 
-    $("modalPreview").textContent =
-
-        `${Math.round(cal)} ккал · ` +
-        `Б ${p.toFixed(1)} г · ` +
-        `Ж ${f.toFixed(1)} г · ` +
+    $("preview").textContent =
+        `${Math.round(cal)} ккал · `+
+        `Б ${p.toFixed(1)} г · `+
+        `Ж ${f.toFixed(1)} г · `+
         `У ${c.toFixed(1)} г`;
 
 }
 
 
-function addSelectedFood(){
-
-    if(!selectedProduct){
-        return;
-    }
-
-    const grams =
-        Number(
-            $("modalGrams").value
-        );
+$("grams").oninput =
+    preview;
 
 
-    if(!grams || grams <= 0){
-        return;
-    }
+document
+    .querySelectorAll(".grams-btn")
+    .forEach(btn=>{
 
+        btn.onclick = ()=>{
 
-    const multiplier =
-        grams / 100;
+            $("grams").value =
+                btn.dataset.g;
 
+            preview();
 
-    diary.items.push({
-
-        id:Date.now(),
-
-        name:selectedProduct.name,
-
-        meal:$("modalMeal").value,
-
-        grams:grams,
-
-        cal:
-            selectedProduct.kcal *
-            multiplier,
-
-        p:
-            selectedProduct.p *
-            multiplier,
-
-        f:
-            selectedProduct.f *
-            multiplier,
-
-        c:
-            selectedProduct.c *
-            multiplier
+        };
 
     });
 
 
-    save();
+/* =========================================
+   ADD FOOD
+========================================= */
 
-    closeFoodModal();
+$("addFood").onclick = ()=>{
+
+    if(!selected) return;
+
+    const grams =
+        Number($("grams").value);
+
+    if(!grams || grams <= 0){
+
+        return;
+
+    }
+
+
+    const item = {
+
+        id:Date.now(),
+
+        name:selected.name,
+
+        meal:$("meal").value,
+
+        grams:grams,
+
+        cal:selected.kcal * grams / 100,
+
+        p:selected.p * grams / 100,
+
+        f:selected.f * grams / 100,
+
+        c:selected.c * grams / 100
+
+    };
+
+
+    diary.items.push(item);
+
+    saveTodayToHistory();
+    save();
 
     renderAll();
 
-}
+
+    $("addModal")
+        .classList.add("hidden");
+
+};
 
 
-/* =========================================================
-   REMOVE FOOD
-========================================================= */
+/* =========================================
+   DELETE FOOD
+========================================= */
 
-window.removeFood =
-function(index){
-
-    if(
-        index < 0 ||
-        index >= diary.items.length
-    ){
-        return;
-    }
+window.removeFood = function(index){
 
     diary.items.splice(
         index,
         1
     );
 
+    saveTodayToHistory();
     save();
 
     renderAll();
@@ -2556,73 +2141,157 @@ function(index){
 };
 
 
-window.clearDiary =
-function(){
+/* =========================================
+   NEW PRODUCT
+========================================= */
+
+$("newProduct").onclick = ()=>{
+
+    $("productModal")
+        .classList.remove("hidden");
+
+};
+
+
+$("closeProduct").onclick = ()=>{
+
+    $("productModal")
+        .classList.add("hidden");
+
+};
+
+
+$("saveProduct").onclick = ()=>{
+
+    const name =
+        $("newName")
+            .value
+            .trim();
+
+    const k =
+        Number($("newK").value);
+
+    const p =
+        Number($("newP").value);
+
+    const f =
+        Number($("newF").value);
+
+    const c =
+        Number($("newC").value);
+
 
     if(
-        !confirm(
-            "Очистить весь сегодняшний дневник?"
-        )
+        !name ||
+        !Number.isFinite(k) ||
+        !Number.isFinite(p) ||
+        !Number.isFinite(f) ||
+        !Number.isFinite(c) ||
+        k < 0 ||
+        p < 0 ||
+        f < 0 ||
+        c < 0
     ){
+
+        $("newError")
+            .textContent =
+            "Заполни все поля корректно.";
+
         return;
+
     }
 
-    diary.items = [];
+
+    const product = {
+
+        id:Date.now(),
+
+        name:name,
+
+        cat:$("newCat").value,
+
+        kcal:k,
+
+        p:p,
+
+        f:f,
+
+        c:c
+
+    };
+
+
+    customProducts.push(product);
+
+    products = [
+        ...baseProducts,
+        ...customProducts
+    ];
+
 
     save();
 
-    renderAll();
+
+    $("newName").value="";
+    $("newK").value="";
+    $("newP").value="";
+    $("newF").value="";
+    $("newC").value="";
+
+    $("newError").textContent="";
+
+
+    $("productModal")
+        .classList.add("hidden");
+
+
+    category="Все";
+    favoriteOnly=false;
+
+    renderProducts();
 
 };
 
 
-/* =========================================================
+/* =========================================
    PROFILE
-========================================================= */
+========================================= */
 
-function loadProfileForm(){
+function loadProfile(){
 
-    if(!profile){
-        return;
-    }
+    if(!profile) return;
 
-    $("profileGender").value =
+    $("gender").value =
         profile.gender;
 
-    $("profileAge").value =
+    $("age").value =
         profile.age;
 
-    $("profileHeight").value =
+    $("height").value =
         profile.height;
 
-    $("profileWeight").value =
+    $("weight").value =
         profile.weight;
 
-    $("profileActivity").value =
+    $("activity").value =
         profile.activity;
 
-    $("profileGoal").value =
+    $("goal").value =
         profile.goal;
 
 }
 
 
-function saveProfile(){
+$("saveProfile").onclick = ()=>{
 
     const age =
-        Number(
-            $("profileAge").value
-        );
+        Number($("age").value);
 
     const height =
-        Number(
-            $("profileHeight").value
-        );
+        Number($("height").value);
 
     const weight =
-        Number(
-            $("profileWeight").value
-        );
+        Number($("weight").value);
 
 
     if(
@@ -2631,7 +2300,8 @@ function saveProfile(){
         !weight
     ){
 
-        $("profileError").textContent =
+        $("profileError")
+            .textContent =
             "Заполни возраст, рост и вес.";
 
         return;
@@ -2641,267 +2311,45 @@ function saveProfile(){
 
     profile = {
 
-        gender:
-            $("profileGender").value,
+        gender:$("gender").value,
 
-        age,
+        age:age,
 
-        height,
+        height:height,
 
-        weight,
+        weight:weight,
 
-        activity:
-            Number(
-                $("profileActivity").value
-            ),
+        activity:Number(
+            $("activity").value
+        ),
 
-        goal:
-            $("profileGoal").value
+        goal:$("goal").value
 
     };
 
 
-    $("profileError").textContent = "";
-
     save();
+
+    $("profileError")
+        .textContent="";
 
     renderAll();
 
-    alert("Профиль сохранён");
+};
 
 
-}
-
-
-/* =========================================================
+/* =========================================
    HISTORY
-========================================================= */
+========================================= */
 
-function renderHistory(){
+function formatDate(date){
 
-    const allHistory = [...history];
-
-    if(
-        diary &&
-        diary.items &&
-        diary.items.length
-    ){
-
-        allHistory.push(diary);
-
-    }
-
-
-    if(!allHistory.length){
-
-        $("historyList").innerHTML = `
-            <div class="empty">
-                Истории пока нет
-            </div>
-        `;
-
-        return;
-
-    }
-
-
-    $("historyList").innerHTML =
-        allHistory
-            .slice()
-            .reverse()
-            .map(day=>{
-
-                const total =
-                    day.items.reduce(
-                        (sum,item)=>
-                            sum + item.cal,
-                        0
-                    );
-
-
-                const p =
-                    day.items.reduce(
-                        (sum,item)=>
-                            sum + item.p,
-                        0
-                    );
-
-                const f =
-                    day.items.reduce(
-                        (sum,item)=>
-                            sum + item.f,
-                        0
-                    );
-
-                const c =
-                    day.items.reduce(
-                        (sum,item)=>
-                            sum + item.c,
-                        0
-                    );
-
-
-                return `
-
-                    <div class="history-item">
-
-                        <div class="history-date">
-                            ${formatDate(day.date)}
-                        </div>
-
-                        <div class="history-info">
-
-                            🔥 ${Math.round(total)} ккал
-
-                            · Б ${p.toFixed(1)} г
-
-                            · Ж ${f.toFixed(1)} г
-
-                            · У ${c.toFixed(1)} г
-
-                        </div>
-
-                    </div>
-
-                `;
-
-            }).join("");
-
-}
-
-
-/* =========================================================
-   CLEAR EVERYTHING
-========================================================= */
-
-function clearAllData(){
-
-    if(
-        !confirm(
-            "Удалить профиль, дневник, избранное и историю?"
-        )
-    ){
-        return;
-    }
-
-    localStorage.removeItem(
-        "kbjuProfile"
-    );
-
-    localStorage.removeItem(
-        "kbjuDiary"
-    );
-
-    localStorage.removeItem(
-        "kbjuHistory"
-    );
-
-    localStorage.removeItem(
-        "kbjuFavorites"
-    );
-
-    localStorage.removeItem(
-        "kbjuCustomProducts"
-    );
-
-
-    location.reload();
-
-}
-
-
-/* =========================================================
-   NAVIGATION
-========================================================= */
-
-function openPage(page){
-
-    document
-        .querySelectorAll(".page")
-        .forEach(
-            element =>
-                element.classList.remove("active")
-        );
-
-
-    const target =
-        $("page-" + page);
-
-    if(target){
-        target.classList.add("active");
-    }
-
-
-    document
-        .querySelectorAll(".nav-btn")
-        .forEach(button=>{
-
-            button.classList.toggle(
-                "active",
-                button.dataset.page === page
-            );
-
-        });
-
-
-    window.scrollTo({
-        top:0,
-        behavior:"smooth"
-    });
-
-
-    if(page === "home"){
-        renderHome();
-    }
-
-    if(page === "diary"){
-        renderDiary();
-    }
-
-    if(page === "products"){
-        renderProductsPage();
-    }
-
-    if(page === "profile"){
-        loadProfileForm();
-    }
-
-}
-
-
-/* =========================================================
-   RENDER ALL
-========================================================= */
-
-function renderAll(){
-
-    if(profile){
-
-        renderHome();
-
-        renderDiary();
-
-    }
-
-    renderProductsPage();
-
-    loadProfileForm();
-
-}
-
-
-/* =========================================================
-   DATE
-========================================================= */
-
-function formatDate(dateString){
-
-    const date =
+    const d =
         new Date(
-            dateString + "T00:00:00"
+            date+"T00:00:00"
         );
 
-    return date.toLocaleDateString(
+    return d.toLocaleDateString(
         "ru-RU",
         {
             day:"numeric",
@@ -2913,167 +2361,273 @@ function formatDate(dateString){
 }
 
 
-/* =========================================================
-   ESCAPE
-========================================================= */
+function renderHistory(){
 
-function escapeHtml(value){
+    saveTodayToHistory();
 
-    return String(value)
-        .replaceAll("&","&amp;")
-        .replaceAll("<","&lt;")
-        .replaceAll(">","&gt;")
-        .replaceAll('"',"&quot;")
-        .replaceAll("'","&#039;");
-
-}
+    const dates =
+        Object.keys(history)
+            .sort()
+            .reverse();
 
 
-function escapeAttr(value){
+    if(!dates.length){
 
-    return String(value)
-        .replaceAll("\\","\\\\")
-        .replaceAll("'","\\'");
+        $("historyList").innerHTML =
+            `<div class="empty">
+                История пока пустая.
+            </div>`;
 
-}
+        return;
 
-
-/* =========================================================
-   EVENTS
-========================================================= */
+    }
 
 
-/* NAV */
+    $("historyList").innerHTML =
+        dates.map(date=>{
 
-document
-    .querySelectorAll(".nav-btn")
-    .forEach(button=>{
+            const day =
+                history[date];
 
-        button.onclick =
-            () =>
-                openPage(
-                    button.dataset.page
+            const items =
+                day.items || [];
+
+
+            const totalsDay =
+                items.reduce(
+
+                    (a,x)=>{
+
+                        a.cal +=
+                            Number(x.cal)||0;
+
+                        a.p +=
+                            Number(x.p)||0;
+
+                        a.f +=
+                            Number(x.f)||0;
+
+                        a.c +=
+                            Number(x.c)||0;
+
+                        return a;
+
+                    },
+
+                    {
+                        cal:0,
+                        p:0,
+                        f:0,
+                        c:0
+                    }
+
                 );
 
-    });
+
+            return `
+
+                <div
+                    class="history-day"
+                    onclick="openHistory('${date}')"
+                >
+
+                    <div class="history-day-header">
+
+                        <div class="history-date">
+                            ${
+                                date === today
+                                ? "Сегодня"
+                                : formatDate(date)
+                            }
+                        </div>
+
+                        <div class="history-cal">
+                            ${Math.round(totalsDay.cal)} ккал
+                        </div>
+
+                    </div>
+
+                    <div class="history-macros">
+
+                        <span>
+                            Б ${totalsDay.p.toFixed(1)} г
+                        </span>
+
+                        <span>
+                            Ж ${totalsDay.f.toFixed(1)} г
+                        </span>
+
+                        <span>
+                            У ${totalsDay.c.toFixed(1)} г
+                        </span>
+
+                    </div>
+
+                </div>
+
+            `;
+
+        }).join("");
+
+}
 
 
-/* QUICK ADD */
+/* =========================================
+   OPEN HISTORY
+========================================= */
 
-$("openQuickAdd").onclick =
-    openFoodModal;
+window.openHistory = function(date){
 
+    const day =
+        history[date];
 
-$("closeFoodModal").onclick =
-    closeFoodModal;
-
-
-/* SEARCH */
-
-$("productSearch").oninput =
-    renderProductsPage;
+    if(!day) return;
 
 
-$("modalSearch").oninput =
-    renderModalProducts;
+    $("historyTitle")
+        .textContent =
+        date === today
+        ? "Сегодня"
+        : formatDate(date);
 
 
-/* GRAMS */
-
-$("modalGrams").oninput =
-    updateModalPreview;
+    const items =
+        day.items || [];
 
 
-/* QUICK GRAMS */
+    if(!items.length){
 
-document
-    .querySelectorAll(
-        "[data-grams]"
-    )
-    .forEach(button=>{
+        $("historyDetails").innerHTML =
+            `<div class="empty">
+                В этот день еды не было.
+            </div>`;
 
-        button.onclick = ()=>{
+    }else{
 
-            $("modalGrams").value =
-                button.dataset.grams;
+        $("historyDetails").innerHTML =
+            items.map(x=>`
 
-            updateModalPreview();
+                <div class="diary-item">
 
-        };
+                    <div class="diary-top">
 
-    });
+                        <div class="diary-name">
+                            ${x.name}
+                        </div>
 
+                        <div class="diary-cal">
+                            ${Math.round(x.cal)} ккал
+                        </div>
 
-/* ADD */
+                    </div>
 
-$("addFoodButton").onclick =
-    addSelectedFood;
+                    <div class="diary-info">
 
+                        ${x.grams} г ·
+                        Б ${Number(x.p).toFixed(1)} ·
+                        Ж ${Number(x.f).toFixed(1)} ·
+                        У ${Number(x.c).toFixed(1)}
+                        · ${x.meal}
 
-/* PROFILE */
+                    </div>
 
-$("saveProfile").onclick =
-    saveProfile;
+                </div>
 
+            `).join("");
 
-/* HISTORY */
-
-$("showHistory").onclick =
-    ()=>{
-
-        $("historyModal")
-            .classList
-            .remove("hidden");
-
-        renderHistory();
-
-    };
+    }
 
 
-$("closeHistory").onclick =
-    ()=>{
+    $("historyModal")
+        .classList.remove("hidden");
 
-        $("historyModal")
-            .classList
-            .add("hidden");
-
-    };
+};
 
 
-/* CLEAR */
+$("closeHistory").onclick = ()=>{
 
-$("clearAllData").onclick =
-    clearAllData;
+    $("historyModal")
+        .classList.add("hidden");
 
-
-/* =========================================================
-   START
-========================================================= */
-
-$("homeDate").textContent =
-    formatDate(today);
-
-$("diaryDate").textContent =
-    formatDate(today);
+};
 
 
-/*
-   Если профиля ещё нет,
-   открываем профиль.
-*/
+/* =========================================
+   RENDER ALL
+========================================= */
 
-if(!profile){
+function renderAll(){
 
-    openPage("profile");
+    renderHome();
 
-}else{
+    renderDiary();
+
+    renderProducts();
+
+    renderHistory();
+
+}
+
+
+/* =========================================
+   INIT
+========================================= */
+
+loadProfile();
+
+if(profile){
 
     renderAll();
 
+}else{
+
+    document
+        .querySelectorAll("[id^='page-']")
+        .forEach(section=>{
+
+            if(
+                section.id !== "page-profile"
+            ){
+
+                section.classList.add(
+                    "hidden"
+                );
+
+            }
+
+        });
+
+    document
+        .querySelectorAll(".tab")
+        .forEach(tab=>
+            tab.classList.remove("active")
+        );
+
+    document
+        .querySelector('[data-page="profile"]')
+        .classList.add("active");
+
+    $("page-profile")
+        .classList.remove("hidden");
+
 }
+
+
+/* =========================================
+   BEFORE CLOSE / SAVE
+========================================= */
+
+window.addEventListener(
+    "beforeunload",
+    ()=>{
+
+        saveTodayToHistory();
+        save();
+
+    }
+);
 
 </script>
 
 </body>
 </html>
-
